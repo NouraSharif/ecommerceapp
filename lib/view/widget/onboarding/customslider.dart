@@ -12,7 +12,6 @@ class CustomSliderOnBoarding extends GetView<OnBoardingControllerImp> {
       controller: controller.pageController,
       onPageChanged: (val) {
         controller.onPageChanged(val);
-        print(val);
       },
       itemCount: onboardingList.length,
       itemBuilder: (context, i) {
