@@ -75,6 +75,8 @@ dependencies:
   google_sign_in: ^7.2.0
   device_preview: ^1.3.1
   responsive_builder: ^0.7.1
+  #otp
+  flutter_otp_text_field: ^1.5.1+1
   
 
 

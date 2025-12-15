@@ -53,7 +53,9 @@ class Login extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                controller.goToForgetPassword();
+              },
               child: Container(
                 padding: EdgeInsets.only(right: 36),
                 child: Text("Forgot Password", textAlign: TextAlign.right),

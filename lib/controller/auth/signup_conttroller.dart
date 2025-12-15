@@ -6,6 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 abstract class SignUpController extends GetxController {
   signUp();
+
   gotToSignIn();
 }
 
@@ -21,7 +22,9 @@ class SignUpControllerImp extends SignUpController {
   }
 
   @override
-  signUp() {}
+  signUp() {
+    Get.offNamed(AppRoute.checkEmail);
+  }
 
   @override
   void onInit() {

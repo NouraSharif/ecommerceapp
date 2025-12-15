@@ -38,7 +38,8 @@ class MyApp extends StatelessWidget {
           bodyLarge: TextStyle(height: 2, color: AppColor.grey, fontSize: 16),
         ),
       ),
-      home: Language(),
+      home: //const Test(),
+          const Language(),
       routes: routes,
     );
   }
