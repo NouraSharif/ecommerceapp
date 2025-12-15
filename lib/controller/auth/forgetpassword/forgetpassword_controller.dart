@@ -4,33 +4,25 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-abstract class LoginController extends GetxController {
-  login();
-  gotToSignUp();
-  goToForgetPassword();
+abstract class ForgetPasswordController extends GetxController {
+  checkemail();
+  gotToVerifyCode();
 }
 
-class LoginControllerImp extends LoginController {
+class ForgetPasswordControllerImp extends ForgetPasswordController {
   TextEditingController? email;
-  TextEditingController? password;
 
   @override
-  gotToSignUp() {
-    Get.toNamed(AppRoute.signUp);
+  gotToVerifyCode() {
+    Get.offNamed(AppRoute.verifyCode);
   }
 
   @override
-  login() {}
-
-  @override
-  void goToForgetPassword() {
-    Get.toNamed(AppRoute.forgetPassword);
-  }
+  checkemail() {}
 
   @override
   void onInit() {
     email = TextEditingController();
-    password = TextEditingController();
     super.onInit();
   }
 }
