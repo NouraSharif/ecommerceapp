@@ -1,15 +1,15 @@
 import 'package:ecommerceapp/core/constant/imageasset.dart';
 import 'package:ecommerceapp/data/model/onboardingmodel.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 List<OnBoardingModel> onboardingList = [
   OnBoardingModel(
-    title: "Choose Product",
+    title: "1".tr,
     image: AppImageAsset.onBoardingImageOne,
-    body:
-        "We Have a 100K+ Products. Choose \nYour product from our E-\ncommerce shop. ",
+    body: "3".tr,
   ),
   OnBoardingModel(
-    title: "Easy And Safe Payment",
+    title: "4".tr,
     image: AppImageAsset.onBoardingImageTwo,
     body:
         "Easy Checkout & Safe Payment\n method. Trusted by our Customers \n from all over the world.",
