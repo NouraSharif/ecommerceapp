@@ -43,6 +43,9 @@ class CheckEmail extends StatelessWidget {
               hinttext: "Enter Your Email",
               icondata: Icons.email_outlined,
               mycontroller: controller.email,
+              validator: (String? p1) {
+                return null;
+              },
             ),
 
             const SizedBox(height: 33),

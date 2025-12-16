@@ -11,6 +11,8 @@ abstract class LoginController extends GetxController {
 }
 
 class LoginControllerImp extends LoginController {
+  GlobalKey<FormState> formstate = GlobalKey();
+
   TextEditingController? email;
   TextEditingController? password;
 
@@ -20,7 +22,12 @@ class LoginControllerImp extends LoginController {
   }
 
   @override
-  login() {}
+  login() {
+    var formdata = formstate.currentState;
+    if (formdata!.validate()) {
+      print("success login");
+    }
+  }
 
   @override
   void goToForgetPassword() {
