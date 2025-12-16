@@ -1,4 +1,3 @@
-import 'package:ecommerceapp/core/constant/color.dart';
 import 'package:ecommerceapp/core/lcalization/changelocale.dart';
 import 'package:ecommerceapp/core/lcalization/translation.dart';
 import 'package:ecommerceapp/core/services/services.dart';
@@ -27,17 +26,7 @@ class MyApp extends StatelessWidget {
       locale: localeController.language,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'PlayfairDisplay',
-        textTheme: const TextTheme(
-          headlineLarge: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: AppColor.black,
-          ),
-          bodyLarge: TextStyle(height: 2, color: AppColor.grey, fontSize: 16),
-        ),
-      ),
+      theme: localeController.apptheme,
       home: //const Test(),
           const Language(),
       routes: routes,
