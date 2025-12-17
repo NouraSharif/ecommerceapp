@@ -57,7 +57,7 @@ class SignUp extends StatelessWidget {
                 icondata: Icons.email_outlined,
                 mycontroller: controller.email,
                 validator: (val) {
-                  return validInput(val!, 11, 20, "email");
+                  return validInput(val!, 11, 100, "email");
                 },
               ),
               CustomTextFormAuth(
@@ -68,6 +68,7 @@ class SignUp extends StatelessWidget {
                 validator: (String? p1) {
                   return validInput(p1!, 9, 20, "phone");
                 },
+                isNumber: true,
               ),
               CustomTextFormAuth(
                 labeltext: "Password",

@@ -2,7 +2,6 @@ class AppRoute {
   //Auth
   static const String login = "/login";
   static const String signUp = "/signup";
-  static const String checkEmail = "/checkemail";
   static const String verifyCodeSignUp = "/verifycodesignup";
   static const String successSignUp = "/successsignup";
   //Auth-ForgetPassword

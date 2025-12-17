@@ -2,7 +2,6 @@ import 'package:ecommerceapp/core/lcalization/changelocale.dart';
 import 'package:ecommerceapp/core/lcalization/translation.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/routes.dart';
-import 'package:ecommerceapp/view/screen/language.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -27,9 +26,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: localeController.apptheme,
-      home: //const Test(),
-          const Language(),
-      routes: routes,
+      //home: const Language(),
+      getPages: routes,
     );
   }
 }
