@@ -8,6 +8,7 @@ import 'package:ecommerceapp/view/widget/auth/customtextformauth.dart';
 import 'package:ecommerceapp/view/widget/auth/customtextsignupsignin.dart';
 import 'package:ecommerceapp/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
@@ -54,14 +55,23 @@ class Login extends StatelessWidget {
                     return validInput(val!, 11, 100, "email");
                   },
                 ),
-                CustomTextFormAuth(
-                  labeltext: "Password",
-                  hinttext: "Enter Your Password",
-                  icondata: Icons.lock_open_outlined,
-                  mycontroller: controller.password,
-                  validator: (String? p1) {
-                    return validInput(p1!, 5, 20, "password");
-                  },
+                GetBuilder<LoginControllerImp>(
+                  builder:
+                      (controller) => CustomTextFormAuth(
+                        labeltext: "Password",
+                        hinttext: "Enter Your Password",
+                        obscureText: controller.isShowPassword,
+                        icondata:
+                            controller.isShowPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+
+                        onTap: controller.showPassword,
+                        mycontroller: controller.password,
+                        validator: (String? p1) {
+                          return validInput(p1!, 5, 20, "password");
+                        },
+                      ),
                 ),
                 const SizedBox(height: 20),
                 InkWell(

@@ -16,6 +16,13 @@ class LoginControllerImp extends LoginController {
   TextEditingController? email;
   TextEditingController? password;
 
+  bool isShowPassword = true;
+
+  showPassword() {
+    isShowPassword = !isShowPassword;
+    update();
+  }
+
   @override
   gotToSignUp() {
     Get.offNamed(AppRoute.signUp);

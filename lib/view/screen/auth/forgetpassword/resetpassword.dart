@@ -8,6 +8,7 @@ import 'package:ecommerceapp/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class ResetPassword extends StatelessWidget {
   const ResetPassword({super.key});
@@ -39,24 +40,45 @@ class ResetPassword extends StatelessWidget {
               const SizedBox(height: 18),
               CustomTextBodyAuth(textbody: "Please Enter New Password"),
               const SizedBox(height: 16),
+              GetBuilder<ResetPasswordControllerImp>(
+                builder:
+                    (controller) => Column(
+                      children: [
+                        CustomTextFormAuth(
+                          labeltext: "Password",
+                          hinttext: "Enter Your Password",
+                          obscureText: controller.isShowPassword,
+                          icondata:
+                              controller.isShowPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
 
-              CustomTextFormAuth(
-                labeltext: "Password",
-                hinttext: "Enter Your Password",
-                icondata: Icons.lock_open_outlined,
-                mycontroller: controller.password,
-                validator: (String? p1) {
-                  return validInput(p1!, 5, 20, "password");
-                },
+                          onTap: controller.showPassword,
+                          mycontroller: controller.password,
+                          validator: (String? p1) {
+                            return validInput(p1!, 5, 20, "password");
+                          },
+                        ),
+                      ],
+                    ),
               ),
-              CustomTextFormAuth(
-                labeltext: "rePassword",
-                hinttext: "Re Enter Your Password",
-                icondata: Icons.lock_open_outlined,
-                mycontroller: controller.repassword,
-                validator: (String? p1) {
-                  return validInput(p1!, 5, 20, "password");
-                },
+              GetBuilder<ResetPasswordControllerImp>(
+                builder:
+                    (controller) => CustomTextFormAuth(
+                      labeltext: "rePassword",
+                      hinttext: "Re Enter Your Password",
+                      obscureText: controller.isReShowPassword,
+                      icondata:
+                          controller.isReShowPassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+
+                      onTap: controller.showRePassword,
+                      mycontroller: controller.repassword,
+                      validator: (String? p1) {
+                        return validInput(p1!, 5, 20, "password");
+                      },
+                    ),
               ),
               const SizedBox(height: 25),
               CustomButtonAuth(
