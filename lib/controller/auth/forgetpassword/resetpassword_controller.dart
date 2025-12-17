@@ -15,6 +15,18 @@ class ResetPasswordControllerImp extends ResetPasswordController {
   TextEditingController? password;
   TextEditingController? repassword;
 
+  bool isShowPassword = true;
+  bool isReShowPassword = true;
+  showPassword() {
+    isShowPassword = !isShowPassword;
+    update();
+  }
+
+  showRePassword() {
+    isReShowPassword = !isReShowPassword;
+    update();
+  }
+
   @override
   resetPassword() {}
 

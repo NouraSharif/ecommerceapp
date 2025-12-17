@@ -11,6 +11,7 @@ import 'package:ecommerceapp/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -73,14 +74,23 @@ class SignUp extends StatelessWidget {
                   },
                   isNumber: true,
                 ),
-                CustomTextFormAuth(
-                  labeltext: "Password",
-                  hinttext: "Enter Your Password",
-                  icondata: Icons.lock_open_outlined,
-                  mycontroller: controller.password,
-                  validator: (String? p1) {
-                    return validInput(p1!, 5, 20, "password");
-                  },
+                GetBuilder<SignUpControllerImp>(
+                  builder:
+                      (controller) => CustomTextFormAuth(
+                        labeltext: "Password",
+                        hinttext: "Enter Your Password",
+                        obscureText: controller.isShowPassword,
+                        icondata:
+                            controller.isShowPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+
+                        onTap: controller.showPassword,
+                        mycontroller: controller.password,
+                        validator: (String? p1) {
+                          return validInput(p1!, 5, 20, "password");
+                        },
+                      ),
                 ),
                 const SizedBox(height: 33),
                 CustomButtonAuth(
