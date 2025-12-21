@@ -15,13 +15,13 @@ class Crud {
           var responsebody = jsonDecode(response.body);
           return Right(responsebody);
         } else {
-          return const Left(StatusRequest.serverfauiler);
+          return const Left(StatusRequest.serverfailure);
         }
       } else {
-        return const Left(StatusRequest.offlinefauiler);
+        return const Left(StatusRequest.offlinefailure);
       }
     } catch (_) {
-      return const Left(StatusRequest.serverfauiler);
+      return const Left(StatusRequest.serverfailure);
     }
   }
 }
