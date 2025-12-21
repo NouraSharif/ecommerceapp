@@ -77,7 +77,8 @@ dependencies:
   responsive_builder: ^0.7.1
   #otp
   flutter_otp_text_field: ^1.5.1+1
-  
+  #checkinternet-web
+  connectivity_plus: ^7.0.0
 
 
 
