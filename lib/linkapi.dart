@@ -1,4 +1,15 @@
 class AppLink {
   static const String server = "http://localhost/ecommerce";
   static const String test = "$server/test.php";
+
+  //===================auth===================
+  static const String signup = "$server/auth/signup.php";
+  static const String verifyCodeSignUp = "$server/auth/verifycode.php";
+  static const String login = "$server/auth/login.php";
+
+  //==================forgetpassword===========
+  static const String checkemail = "$server/forgetpassword/checkemail.php";
+  static const String verifycode = "$server/forgetpassword/verifycode.php";
+  static const String resetpassword =
+      "$server/forgetpassword/resetpassword.php";
 }

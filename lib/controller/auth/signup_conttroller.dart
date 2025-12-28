@@ -1,9 +1,9 @@
+import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/constant/routes.dart';
+import 'package:ecommerceapp/core/functions/handlingdata.dart';
+import 'package:ecommerceapp/data/datasource/remote/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 abstract class SignUpController extends GetxController {
   signUp();
@@ -12,6 +12,9 @@ abstract class SignUpController extends GetxController {
 }
 
 class SignUpControllerImp extends SignUpController {
+  SignupData signupdata = SignupData();
+  List data = [];
+  StatusRequest? statusRequest;
   GlobalKey<FormState> formstate = GlobalKey();
 
   TextEditingController? username;
@@ -32,10 +35,33 @@ class SignUpControllerImp extends SignUpController {
   }
 
   @override
-  signUp() {
+  signUp() async {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
-      Get.offNamed(AppRoute.verifyCodeSignUp);
+      statusRequest = StatusRequest.loading;
+      update();
+      var response = await signupdata.getData(
+        username!.text,
+        email!.text,
+        phone!.text,
+        password!.text,
+      );
+      statusRequest = handlingData(response);
+      if (statusRequest == StatusRequest.success) {
+        if (response['status'] == 'success') {
+          //data.addAll(response['data']);
+          Get.offNamed(
+            AppRoute.verifyCodeSignUp,
+            arguments: {"email": email!.text},
+          );
+        } else {
+          Get.defaultDialog(
+            title: "Warning",
+            middleText: "Email OR Phone Already Exists",
+          );
+        }
+        update();
+      } else {}
     }
   }
 

@@ -1,4 +1,7 @@
+import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/constant/routes.dart';
+import 'package:ecommerceapp/core/functions/handlingdata.dart';
+import 'package:ecommerceapp/data/datasource/remote/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -11,6 +14,8 @@ abstract class LoginController extends GetxController {
 }
 
 class LoginControllerImp extends LoginController {
+  LoginData logindata = LoginData();
+  StatusRequest? statusRequest = StatusRequest.none;
   GlobalKey<FormState> formstate = GlobalKey();
 
   TextEditingController? email;
@@ -29,10 +34,25 @@ class LoginControllerImp extends LoginController {
   }
 
   @override
-  login() {
+  login() async {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
-      print("success login");
+      statusRequest = StatusRequest.loading;
+      update();
+      var response = await logindata.getData(email!.text, password!.text);
+      statusRequest = handlingData(response);
+      if (statusRequest == StatusRequest.success) {
+        if (response["status"] == 'success') {
+          Get.offNamed(AppRoute.home);
+        } else {
+          Get.defaultDialog(
+            title: "warning",
+            middleText: "Email OR Password Not Correct",
+          );
+        }
+        update();
+      }
+      // print("success login");
     }
   }
 
