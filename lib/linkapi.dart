@@ -12,4 +12,10 @@ class AppLink {
   static const String verifycode = "$server/forgetpassword/verifycode.php";
   static const String resetpassword =
       "$server/forgetpassword/resetpassword.php";
+
+  //===============home==============
+  static const String home = "$server/home.php";
+
+  //===============images===============
+  static const String images = "$server/upload";
 }

@@ -14,7 +14,7 @@ abstract class SignUpController extends GetxController {
 class SignUpControllerImp extends SignUpController {
   SignupData signupdata = SignupData();
   List data = [];
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
   GlobalKey<FormState> formstate = GlobalKey();
 
   TextEditingController? username;

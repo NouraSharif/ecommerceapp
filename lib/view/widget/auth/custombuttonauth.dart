@@ -19,7 +19,7 @@ class CustomButtonAuth extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           minimumSize: Size(70, 52),
-          backgroundColor: AppColor.black,
+          backgroundColor: AppColor.primarycolor,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
