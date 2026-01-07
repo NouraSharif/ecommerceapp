@@ -1,4 +1,7 @@
+import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/constant/routes.dart';
+import 'package:ecommerceapp/core/functions/handlingdata.dart';
+import 'package:ecommerceapp/data/datasource/remote/forgetpassword/resetpassword.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -10,6 +13,11 @@ abstract class ResetPasswordController extends GetxController {
 }
 
 class ResetPasswordControllerImp extends ResetPasswordController {
+  ResetPasswordData resetpassworddata = ResetPasswordData();
+  StatusRequest? statusRequest;
+
+  String? email;
+
   GlobalKey<FormState> formstate = GlobalKey();
 
   TextEditingController? password;
@@ -31,15 +39,36 @@ class ResetPasswordControllerImp extends ResetPasswordController {
   resetPassword() {}
 
   @override
-  goToSuccessResetPassword() {
+  goToSuccessResetPassword() async {
     var formdata = formstate.currentState;
+
     if (formdata!.validate()) {
-      Get.offNamed(AppRoute.successResetPassword);
+      if (password!.text != repassword!.text) {
+        Get.defaultDialog(title: 'warning', middleText: 'Password Not Match!');
+        return;
+      }
+
+      statusRequest = StatusRequest.loading;
+      update();
+
+      var response = await resetpassworddata.getData(email!, password!.text);
+
+      statusRequest = handlingData(response);
+
+      if (statusRequest == StatusRequest.success) {
+        if (response['status'] == 'success') {
+          Get.offNamed(AppRoute.successResetPassword);
+        } else {
+          Get.defaultDialog(title: 'warning', middleText: 'Try Again!');
+        }
+      }
+      update();
     }
   }
 
   @override
   void onInit() {
+    email = Get.arguments?['email'];
     password = TextEditingController();
     repassword = TextEditingController();
     super.onInit();

@@ -12,6 +12,7 @@ class Crud {
     try {
       if (await internetCheck()) {
         if (response.statusCode == 200 || response.statusCode == 201) {
+          // print("Response body: ${response.body}");
           var responsebody = jsonDecode(response.body);
           return Right(responsebody);
         } else {
