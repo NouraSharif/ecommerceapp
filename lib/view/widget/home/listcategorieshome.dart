@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerceapp/controller/home_controller.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
+import 'package:ecommerceapp/core/functions/translatedatabase.dart';
 import 'package:ecommerceapp/data/model/categoriesmodel.dart';
 import 'package:ecommerceapp/linkapi.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,13 @@ class ListCategoriesHome extends GetView<HomeControllerImp> {
         itemCount: controller.categories.length,
         itemBuilder: (context, i) {
           return InkWell(
-            onTap: () {},
+            onTap: () {
+              controller.goToItems(
+                controller.categories,
+                i,
+                controller.categories[i]['categories_id'].toString(),
+              );
+            },
             child: Categories(
               categoriesmodel: CategoriesModel.fromJson(
                 controller.categories[i],
@@ -57,15 +65,17 @@ class Categories extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(10),
-            child: Image.network(
-              "${AppLink.images}/${categoriesmodel.categoriesImage}",
+            child: CachedNetworkImage(
+              imageUrl: "${AppLink.images}/${categoriesmodel.categoriesImage}",
               height: 70,
               width: 125,
               fit: BoxFit.cover,
+              // يحفظ الصور مؤقتاً في memory cache
+              // لا يعيد تحميل الصور عند التمرير
             ),
           ),
           Text(
-            "${categoriesmodel.categoriesName}",
+            "${translateDatabase(categoriesmodel.categoriesNameAr!, categoriesmodel.categoriesName!)}",
             style: TextStyle(color: AppColor.grey, fontWeight: FontWeight.bold),
           ),
         ],

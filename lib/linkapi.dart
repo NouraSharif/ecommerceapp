@@ -18,4 +18,7 @@ class AppLink {
 
   //===============images===============
   static const String images = "$server/upload";
+
+  //================items=============
+  static const String items = "$server/items/items.php";
 }

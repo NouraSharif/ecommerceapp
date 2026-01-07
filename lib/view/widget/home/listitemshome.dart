@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerceapp/controller/home_controller.dart';
 import 'package:ecommerceapp/data/model/itemsmodel.dart';
 import 'package:ecommerceapp/linkapi.dart';
@@ -17,7 +18,9 @@ class ListItemsHome extends GetView<HomeControllerImp> {
         itemBuilder: (context, i) {
           return InkWell(
             onTap: () {},
-            child: Items(itemsmodel: ItemsModel.fromJson(controller.items[i])),
+            child: ItemsHome(
+              itemsmodel: ItemsModel.fromJson(controller.items[i]),
+            ),
           );
         },
       ),
@@ -25,9 +28,9 @@ class ListItemsHome extends GetView<HomeControllerImp> {
   }
 }
 
-class Items extends StatelessWidget {
+class ItemsHome extends StatelessWidget {
   final ItemsModel itemsmodel;
-  const Items({super.key, required this.itemsmodel});
+  const ItemsHome({super.key, required this.itemsmodel});
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +44,8 @@ class Items extends StatelessWidget {
             child: SizedBox(
               width: 300,
               height: 180,
-              child: Image.network(
-                "${AppLink.images}/${itemsmodel.itemsImage}",
+              child: CachedNetworkImage(
+                imageUrl: "${AppLink.images}/${itemsmodel.itemsImage}",
                 fit: BoxFit.cover,
               ),
             ),

@@ -10,6 +10,7 @@ import 'package:ecommerceapp/view/screen/auth/signup.dart';
 import 'package:ecommerceapp/view/screen/auth/success_signup.dart';
 import 'package:ecommerceapp/view/screen/auth/verifycodesignup.dart';
 import 'package:ecommerceapp/view/screen/homescreen.dart';
+import 'package:ecommerceapp/view/screen/itesms.dart';
 import 'package:ecommerceapp/view/screen/language.dart';
 import 'package:ecommerceapp/view/screen/onboarding.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -38,4 +39,5 @@ List<GetPage<dynamic>> routes = [
   ),
   GetPage(name: AppRoute.successSignUp, page: () => const SuccessSignUp()),
   GetPage(name: AppRoute.home, page: () => const HomeScreen()),
+  GetPage(name: AppRoute.items, page: () => const Items()),
 ];

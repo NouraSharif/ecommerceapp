@@ -1,4 +1,4 @@
-import 'package:ecommerceapp/controller/homescreen.dart';
+import 'package:ecommerceapp/controller/homescreen_controller.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
 import 'package:ecommerceapp/view/widget/home/custombuttomappbar.dart';
 import 'package:flutter/material.dart';
