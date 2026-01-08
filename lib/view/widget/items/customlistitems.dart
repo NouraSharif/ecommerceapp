@@ -6,6 +6,7 @@ import 'package:ecommerceapp/data/model/itemsmodel.dart';
 import 'package:ecommerceapp/linkapi.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/state_manager.dart';
 
 class CustomListItems extends StatelessWidget {
   @override
@@ -39,65 +40,76 @@ class CustomListItems extends StatelessWidget {
   }
 }
 
-class ListItems extends StatelessWidget {
+class ListItems extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
   const ListItems({super.key, required this.itemsModel});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return InkWell(
+      onTap: () {
+        controller.goToProductDetails(itemsModel);
+      },
+      child: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
 
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 11.0),
-              child: CachedNetworkImage(
-                imageUrl: "${AppLink.images}/${itemsModel.itemsImage}",
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          ListTile(
-            title: Text(itemsModel.itemsName!, textAlign: TextAlign.center),
-          ),
-          Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                "     Rating",
-                style: TextStyle(
-                  color: AppColor.primarycolor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              SizedBox(width: 40),
-              ...List.generate(
-                4,
-                (index) => Icon(Icons.star, color: Colors.amber),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(9.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "  200.50\$",
-                  style: TextStyle(
-                    color: AppColor.blue,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 11.0),
+                child: Hero(
+                  tag: itemsModel.itemsId!,
+                  child: CachedNetworkImage(
+                    imageUrl: "${AppLink.images}/${itemsModel.itemsImage}",
+                    fit: BoxFit.contain,
                   ),
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.favorite_border)),
+              ),
+            ),
+            ListTile(
+              title: Text(itemsModel.itemsName!, textAlign: TextAlign.center),
+            ),
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  "     Rating",
+                  style: TextStyle(
+                    color: AppColor.primarycolor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(width: 40),
+                ...List.generate(
+                  4,
+                  (index) => Icon(Icons.star, color: Colors.amber),
+                ),
               ],
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(9.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "  200.50\$",
+                    style: TextStyle(
+                      color: AppColor.blue,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.favorite_border),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

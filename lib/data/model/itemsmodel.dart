@@ -2,9 +2,9 @@ class ItemsModel {
   int? itemsId;
   String? itemsName;
   String? itemsNameAr;
-  Null itemsDesc;
-  Null itemsDescAr;
-  Null itemsCount;
+  String? itemsDesc;
+  String? itemsDescAr;
+  int? itemsCount;
   int? itemsActive;
   Null itemsPrice;
   int? itemsDiscount;
