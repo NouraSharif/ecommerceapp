@@ -1,6 +1,8 @@
 import 'package:ecommerceapp/core/class/statusrequest.dart';
+import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:ecommerceapp/core/functions/handlingdata.dart';
 import 'package:ecommerceapp/data/datasource/remote/items.dart';
+import 'package:ecommerceapp/data/model/itemsmodel.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
@@ -9,6 +11,7 @@ abstract class ItemsController extends GetxController {
   initialData();
   changeCat(int val, String categoriesid);
   getItems(String categoriesid);
+  goToProductDetails(ItemsModel itemsModel);
 }
 
 class ItemsControllerImp extends ItemsController {
@@ -57,5 +60,10 @@ class ItemsControllerImp extends ItemsController {
       statusRequest = StatusRequest.failure;
     }
     update();
+  }
+
+  @override
+  goToProductDetails(itemsModel) {
+    Get.toNamed(AppRoute.productdetails, arguments: {"itemsmodel": itemsModel});
   }
 }
