@@ -12,6 +12,7 @@ import 'package:ecommerceapp/view/screen/auth/verifycodesignup.dart';
 import 'package:ecommerceapp/view/screen/homescreen.dart';
 import 'package:ecommerceapp/view/screen/itesms.dart';
 import 'package:ecommerceapp/view/screen/language.dart';
+import 'package:ecommerceapp/view/screen/myfavorite.dart';
 import 'package:ecommerceapp/view/screen/onboarding.dart';
 import 'package:ecommerceapp/view/screen/productdetails.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -42,4 +43,6 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.home, page: () => const HomeScreen()),
   GetPage(name: AppRoute.items, page: () => const Items()),
   GetPage(name: AppRoute.productdetails, page: () => const ProductDetails()),
+
+  GetPage(name: AppRoute.myfavorite, page: () => MyFavorite()),
 ];

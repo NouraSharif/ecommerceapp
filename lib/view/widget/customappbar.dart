@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
   final void Function()? onPressedSearch;
+  final void Function()? onPressedfavorite;
+
   final String titleappBar;
   final void Function()? onPressed;
   const CustomAppBar({
@@ -10,6 +12,7 @@ class CustomAppBar extends StatelessWidget {
     required this.onPressedSearch,
     required this.titleappBar,
     required this.onPressed,
+    required this.onPressedfavorite,
   });
 
   @override
@@ -47,6 +50,20 @@ class CustomAppBar extends StatelessWidget {
             child: IconButton(
               onPressed: onPressed,
               icon: Icon(Icons.notifications_active_outlined),
+            ),
+          ),
+        ),
+        const SizedBox(width: 5),
+        Expanded(
+          child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+              color: AppColor.appbarcolor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: IconButton(
+              onPressed: onPressedfavorite,
+              icon: Icon(Icons.favorite_border),
             ),
           ),
         ),

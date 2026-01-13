@@ -1,16 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerceapp/controller/favorite/favorite_controller.dart';
 import 'package:ecommerceapp/controller/items_controller.dart';
 import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
 import 'package:ecommerceapp/data/model/itemsmodel.dart';
 import 'package:ecommerceapp/linkapi.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 
 class CustomListItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    FavoriteController controllerfav = Get.put(FavoriteController());
     return GetBuilder<ItemsControllerImp>(
       builder: (controller) {
         if (controller.statusRequest == StatusRequest.loading) {
@@ -30,6 +32,9 @@ class CustomListItems extends StatelessWidget {
             crossAxisCount: 2,
           ),
           itemBuilder: (context, i) {
+            controllerfav.isFavorites.addAll({
+              controller.items[i]['items_id']: controller.items[i]['favorite'],
+            });
             return ListItems(
               itemsModel: ItemsModel.fromJson(controller.items[i]),
             );
@@ -46,6 +51,7 @@ class ListItems extends GetView<ItemsControllerImp> {
 
   @override
   Widget build(BuildContext context) {
+    FavoriteController controllerfav = Get.find();
     return InkWell(
       onTap: () {
         controller.goToProductDetails(itemsModel);
@@ -71,7 +77,6 @@ class ListItems extends GetView<ItemsControllerImp> {
               title: Text(itemsModel.itemsName!, textAlign: TextAlign.center),
             ),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
                   "     Rating",
@@ -101,9 +106,30 @@ class ListItems extends GetView<ItemsControllerImp> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.favorite_border),
+                  GetBuilder<FavoriteController>(
+                    builder:
+                        (controller) => IconButton(
+                          onPressed: () {
+                            if (controllerfav.isFavorites[itemsModel.itemsId] ==
+                                0) {
+                              controllerfav.setFavorite(itemsModel.itemsId!, 1);
+                              controllerfav.addFavorite(
+                                itemsModel.itemsId.toString(),
+                              );
+                            } else {
+                              controllerfav.setFavorite(itemsModel.itemsId!, 0);
+                              controllerfav.removeFavorite(
+                                itemsModel.itemsId.toString(),
+                              );
+                            }
+                          },
+                          icon: Icon(
+                            controllerfav.isFavorites[itemsModel.itemsId] == 1
+                                ? Icons.favorite_outlined
+                                : Icons.favorite_border,
+                            color: AppColor.secondaryColor,
+                          ),
+                        ),
                   ),
                 ],
               ),

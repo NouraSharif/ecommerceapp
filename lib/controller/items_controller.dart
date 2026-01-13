@@ -1,9 +1,11 @@
 import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:ecommerceapp/core/functions/handlingdata.dart';
+import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/items.dart';
 import 'package:ecommerceapp/data/model/itemsmodel.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
@@ -23,6 +25,7 @@ class ItemsControllerImp extends ItemsController {
   List items = [];
 
   StatusRequest statusRequest = StatusRequest.none;
+  MyServices myServices = Get.find();
 
   @override
   void onInit() {
@@ -52,7 +55,10 @@ class ItemsControllerImp extends ItemsController {
     items.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response = await itemsData.getAllItems(categoriesid);
+    var response = await itemsData.getAllItems(
+      categoriesid,
+      myServices.sharedPreferences.getString("id")!,
+    );
     statusRequest = handlingData(response);
     if (response['status'] == "success") {
       items.addAll(response['data']);

@@ -1,23 +1,26 @@
-import 'package:ecommerceapp/controller/items_controller.dart';
+import 'package:ecommerceapp/controller/favorite/myfavorite_controller.dart';
 import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:ecommerceapp/view/widget/customappbar.dart';
-import 'package:ecommerceapp/view/widget/items/customlistitems.dart';
-import 'package:ecommerceapp/view/widget/items/listcategoriesitems.dart';
+import 'package:ecommerceapp/view/widget/myfavorite/customlistfavoriteitems.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class Items extends StatelessWidget {
-  const Items({super.key});
+class MyFavorite extends StatelessWidget {
+  const MyFavorite({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ItemsControllerImp());
+    Get.put(MyFavoriteController());
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Items')),
-      body: Container(
-        padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
+      body:
+      //HandlingDataView(
+      //statusRequest: controller.statusRequest,
+      //widget:
+      Container(
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
             CustomAppBar(
@@ -28,8 +31,8 @@ class Items extends StatelessWidget {
                 Get.toNamed(AppRoute.myfavorite);
               },
             ),
-            ListCategoriesItems(),
-            CustomListItems(),
+            SizedBox(height: 20),
+            CustomListFavoriteItems(),
           ],
         ),
       ),
