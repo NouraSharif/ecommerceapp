@@ -14,7 +14,7 @@ abstract class ResetPasswordController extends GetxController {
 
 class ResetPasswordControllerImp extends ResetPasswordController {
   ResetPasswordData resetpassworddata = ResetPasswordData();
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
 
   String? email;
 

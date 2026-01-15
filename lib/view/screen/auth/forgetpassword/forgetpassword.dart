@@ -29,7 +29,7 @@ class ForgetPassword extends StatelessWidget {
       body: GetBuilder<ForgetPasswordControllerImp>(
         builder:
             (controller) => HandlingDataRequest(
-              statusRequest: controller.statusRequest!,
+              statusRequest: controller.statusRequest,
               widget: Form(
                 key: controller.formstate,
                 child: Container(

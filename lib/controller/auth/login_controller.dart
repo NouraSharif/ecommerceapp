@@ -47,25 +47,29 @@ class LoginControllerImp extends LoginController {
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response["status"] == 'success') {
-          myservices.sharedPreferences.setString(
-            "id",
-            response['data']['users_id'].toString(),
-          );
+          if (response['data']['users_approve'] == 1) {
+            myservices.sharedPreferences.setString(
+              "id",
+              response['data']['users_id'].toString(),
+            );
 
-          myservices.sharedPreferences.setString(
-            "username",
-            response['data']['users_name'],
-          );
-          myservices.sharedPreferences.setString(
-            "email",
-            response['data']['users_email'],
-          );
-          myservices.sharedPreferences.setString(
-            "phone",
-            response['data']['users_phone'],
-          );
-          myservices.sharedPreferences.setBool("step2", true);
-          Get.offNamed(AppRoute.home);
+            myservices.sharedPreferences.setString(
+              "username",
+              response['data']['users_name'],
+            );
+            myservices.sharedPreferences.setString(
+              "email",
+              response['data']['users_email'],
+            );
+            myservices.sharedPreferences.setString(
+              "phone",
+              response['data']['users_phone'],
+            );
+            myservices.sharedPreferences.setBool("step2", true);
+            Get.offNamed(AppRoute.home);
+          } else {
+            Get.toNamed(AppRoute.verifyCode, arguments: {"email": email!.text});
+          }
         } else {
           Get.defaultDialog(
             title: "warning",

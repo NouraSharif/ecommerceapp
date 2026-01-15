@@ -12,7 +12,7 @@ abstract class VerifyCodeController extends GetxController {
 
 class VerifyCodeControllerImp extends VerifyCodeController {
   VerifyCodeData verifycodedata = VerifyCodeData();
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
 
   String? email;
 

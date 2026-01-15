@@ -32,7 +32,7 @@ class ResetPassword extends StatelessWidget {
       body: GetBuilder<ResetPasswordControllerImp>(
         builder:
             (controller) => HandlingDataRequest(
-              statusRequest: controller.statusRequest!,
+              statusRequest: controller.statusRequest,
               widget: Form(
                 key: controller.formstate,
                 child: Container(

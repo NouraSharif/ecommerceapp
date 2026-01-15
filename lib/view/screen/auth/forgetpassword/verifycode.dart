@@ -30,7 +30,7 @@ class VerifyCode extends StatelessWidget {
       body: GetBuilder<VerifyCodeControllerImp>(
         builder:
             (controller) => HandlingDataRequest(
-              statusRequest: controller.statusRequest!,
+              statusRequest: controller.statusRequest,
               widget: Container(
                 padding: const EdgeInsets.all(20.0),
                 child: ListView(
@@ -40,7 +40,7 @@ class VerifyCode extends StatelessWidget {
                     const SizedBox(height: 20),
                     CustomTextBodyAuth(
                       textbody:
-                          "Please Enter The Digit Code Sent  Or\n Your Email",
+                          "Please enter the digit code sent to \n ${controller.email}",
                     ),
                     const SizedBox(height: 20),
                     OtpTextField(

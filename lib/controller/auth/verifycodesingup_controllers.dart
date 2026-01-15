@@ -13,7 +13,7 @@ abstract class VerifyCodeSignUpController extends GetxController {
 
 class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController {
   VerifyCodeSignUpData verifycodedata = VerifyCodeSignUpData();
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
   String? email;
 
   @override
@@ -43,5 +43,26 @@ class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController {
   void onInit() {
     email = Get.arguments['email'];
     super.onInit();
+  }
+
+  resendCodeSignUp() async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await verifycodedata.resendCode(email!);
+    statusRequest = handlingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == 'success') {
+        Get.defaultDialog(
+          title: "Success",
+          middleText: "Verification Code Resent Successfully",
+        );
+      } else {
+        Get.defaultDialog(
+          title: "Warning",
+          middleText: "Failed to Resend Verification Code",
+        );
+      }
+      update();
+    } else {}
   }
 }

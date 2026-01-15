@@ -29,7 +29,7 @@ class VerifyCodeSignUp extends StatelessWidget {
       body: GetBuilder<VerifyCodeSignUpControllerImp>(
         builder:
             (controller) => HandlingDataRequest(
-              statusRequest: controller.statusRequest!,
+              statusRequest: controller.statusRequest,
               widget: Container(
                 padding: const EdgeInsets.all(20.0),
                 child: ListView(
@@ -39,7 +39,7 @@ class VerifyCodeSignUp extends StatelessWidget {
                     const SizedBox(height: 20),
                     CustomTextBodyAuth(
                       textbody:
-                          "Please Enter The Digit Code Sent  Or\n Your Email",
+                          "Please enter the digit code sent to \n ${controller.email}",
                     ),
                     const SizedBox(height: 20),
                     OtpTextField(
@@ -52,6 +52,22 @@ class VerifyCodeSignUp extends StatelessWidget {
                       onSubmit: (String verificationCode) {
                         controller.gotToSuccessSignUp(verificationCode);
                       },
+                    ),
+                    SizedBox(height: 50),
+                    MaterialButton(
+                      height: 50,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      onPressed: () {
+                        controller.resendCodeSignUp();
+                      },
+                      color: AppColor.primarycolor,
+                      textColor: Colors.white,
+                      child: Text(
+                        "Resend Verify Code",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
                   ],
                 ),

@@ -13,7 +13,7 @@ abstract class ForgetPasswordController extends GetxController {
 
 class ForgetPasswordControllerImp extends ForgetPasswordController {
   CheckEmailData checkemaildata = CheckEmailData();
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
   GlobalKey<FormState> formstate = GlobalKey();
   TextEditingController? email;
 
