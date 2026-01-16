@@ -26,7 +26,6 @@ class MyFavorite extends StatelessWidget {
             CustomAppBar(
               onPressedSearch: () {},
               titleappBar: "Find Product",
-              onPressed: () {},
               onPressedfavorite: () {
                 Get.toNamed(AppRoute.myfavorite);
               },

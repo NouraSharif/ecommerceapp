@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomButtomAppBar extends StatelessWidget {
-  final String title;
   final IconData icon;
 
   final Color? color;
@@ -11,7 +10,6 @@ class CustomButtomAppBar extends StatelessWidget {
 
   const CustomButtomAppBar({
     super.key,
-    required this.title,
     required this.icon,
     required this.color,
     required this.onPressed,
@@ -22,15 +20,11 @@ class CustomButtomAppBar extends StatelessWidget {
     return GetBuilder<HomeScreenControllerImp>(
       builder:
           (controller) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: MaterialButton(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: IconButton(
+              alignment: Alignment.center,
               onPressed: onPressed,
-              child: Column(
-                children: [
-                  Icon(icon, color: color),
-                  Text(title, style: TextStyle(color: color)),
-                ],
-              ),
+              icon: Icon(icon, color: color, size: 28),
             ),
           ),
     );

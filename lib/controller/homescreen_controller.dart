@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/view/screen/home.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerceapp/view/screen/settings.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 abstract class HomeScreen extends GetxController {
@@ -12,7 +13,14 @@ class HomeScreenControllerImp extends HomeScreen {
     const HomePage(),
     Center(child: Text("Settings")),
     Center(child: Text("favorit")),
-    Center(child: Text("profile")),
+    SettingsPage(),
+  ];
+
+  List buttonappbar = [
+    {"icon": Icon(Icons.home)},
+    {"icon": Icon(Icons.notifications_active_outlined)},
+    {"icon": Icon(Icons.person_pin_sharp)},
+    {"icon": Icon(Icons.settings)},
   ];
 
   @override

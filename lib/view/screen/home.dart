@@ -24,13 +24,12 @@ class HomePage extends StatelessWidget {
             (controller) => HandlingDataView(
               statusRequest: controller.statusRequest,
               widget: Container(
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.only(left: 16, right: 16, top: 16),
                 child: ListView(
                   children: [
                     CustomAppBar(
                       titleappBar: "Find Product",
                       onPressedSearch: () {},
-                      onPressed: () {},
                       onPressedfavorite: () {
                         Get.toNamed(AppRoute.myfavorite);
                       },

@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: BottomAppBar(
-              height: 70,
+              height: 60,
               color: AppColor.appbarcolor,
               shape: CircularNotchedRectangle(),
               notchMargin: 8,
@@ -37,8 +37,7 @@ class HomeScreen extends StatelessWidget {
                   Row(
                     children: [
                       CustomButtomAppBar(
-                        title: "home",
-                        icon: Icons.home,
+                        icon: controller.buttonappbar[0]["icon"].icon,
                         color:
                             controller.currentpage == 0
                                 ? AppColor.primarycolor
@@ -48,8 +47,7 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                       CustomButtomAppBar(
-                        title: "settings",
-                        icon: Icons.settings,
+                        icon: controller.buttonappbar[1]["icon"].icon,
                         color:
                             controller.currentpage == 1
                                 ? AppColor.primarycolor
@@ -64,8 +62,7 @@ class HomeScreen extends StatelessWidget {
                   Row(
                     children: [
                       CustomButtomAppBar(
-                        title: "favorit",
-                        icon: Icons.shopping_basket_outlined,
+                        icon: controller.buttonappbar[2]["icon"].icon,
                         color:
                             controller.currentpage == 2
                                 ? AppColor.primarycolor
@@ -75,8 +72,7 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                       CustomButtomAppBar(
-                        title: "profile",
-                        icon: Icons.person_4_outlined,
+                        icon: controller.buttonappbar[3]["icon"].icon,
                         color:
                             controller.currentpage == 3
                                 ? AppColor.primarycolor
