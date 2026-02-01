@@ -21,4 +21,6 @@ class AppRoute {
   static const String myfavorite = "/myfavorite";
 
   static const String settingsPage = "/settingspage";
+
+  static const String cart = "/cart";
 }

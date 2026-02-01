@@ -1,15 +1,9 @@
-class MyFavoriteModel {
-  int? favoriteId;
-  int? favoriteUsersid;
-  int? favoriteItemsid;
-  int? usersId;
-  String? usersName;
-  String? usersPassword;
-  String? usersEmail;
-  String? usersPhone;
-  String? usersVerifycode;
-  int? usersApprove;
-  String? usersCreate;
+class CartModel {
+  double? itemsprice;
+  int? countitems;
+  int? cartId;
+  int? cartUsersid;
+  int? cartItemsid;
   int? itemsId;
   String? itemsName;
   String? itemsNameAr;
@@ -23,18 +17,12 @@ class MyFavoriteModel {
   int? itemsCat;
   String? itemsImage;
 
-  MyFavoriteModel({
-    this.favoriteId,
-    this.favoriteUsersid,
-    this.favoriteItemsid,
-    this.usersId,
-    this.usersName,
-    this.usersPassword,
-    this.usersEmail,
-    this.usersPhone,
-    this.usersVerifycode,
-    this.usersApprove,
-    this.usersCreate,
+  CartModel({
+    this.itemsprice,
+    this.countitems,
+    this.cartId,
+    this.cartUsersid,
+    this.cartItemsid,
     this.itemsId,
     this.itemsName,
     this.itemsNameAr,
@@ -49,18 +37,12 @@ class MyFavoriteModel {
     this.itemsImage,
   });
 
-  MyFavoriteModel.fromJson(Map<String, dynamic> json) {
-    favoriteId = json['favorite_id'];
-    favoriteUsersid = json['favorite_usersid'];
-    favoriteItemsid = json['favorite_itemsid'];
-    usersId = json['users_id'];
-    usersName = json['users_name'];
-    usersPassword = json['users_password'];
-    usersEmail = json['users_email'];
-    usersPhone = json['users_phone'];
-    usersVerifycode = json['users_verifycode'];
-    usersApprove = json['users_approve'];
-    usersCreate = json['users_create'];
+  CartModel.fromJson(Map<String, dynamic> json) {
+    itemsprice = json['itemsprice'];
+    countitems = json['countitems'];
+    cartId = json['cart_id'];
+    cartUsersid = json['cart_usersid'];
+    cartItemsid = json['cart_itemsid'];
     itemsId = json['items_id'];
     itemsName = json['items_name'];
     itemsNameAr = json['items_name_ar'];
@@ -77,17 +59,11 @@ class MyFavoriteModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['favorite_id'] = this.favoriteId;
-    data['favorite_usersid'] = this.favoriteUsersid;
-    data['favorite_itemsid'] = this.favoriteItemsid;
-    data['users_id'] = this.usersId;
-    data['users_name'] = this.usersName;
-    data['users_password'] = this.usersPassword;
-    data['users_email'] = this.usersEmail;
-    data['users_phone'] = this.usersPhone;
-    data['users_verifycode'] = this.usersVerifycode;
-    data['users_approve'] = this.usersApprove;
-    data['users_create'] = this.usersCreate;
+    data['itemsprice'] = this.itemsprice;
+    data['countitems'] = this.countitems;
+    data['cart_id'] = this.cartId;
+    data['cart_usersid'] = this.cartUsersid;
+    data['cart_itemsid'] = this.cartItemsid;
     data['items_id'] = this.itemsId;
     data['items_name'] = this.itemsName;
     data['items_name_ar'] = this.itemsNameAr;

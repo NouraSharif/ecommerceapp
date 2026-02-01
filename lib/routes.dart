@@ -9,6 +9,7 @@ import 'package:ecommerceapp/view/screen/auth/login.dart';
 import 'package:ecommerceapp/view/screen/auth/signup.dart';
 import 'package:ecommerceapp/view/screen/auth/success_signup.dart';
 import 'package:ecommerceapp/view/screen/auth/verifycodesignup.dart';
+import 'package:ecommerceapp/view/screen/cart.dart';
 import 'package:ecommerceapp/view/screen/homescreen.dart';
 import 'package:ecommerceapp/view/screen/itesms.dart';
 import 'package:ecommerceapp/view/screen/language.dart';
@@ -48,4 +49,6 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.myfavorite, page: () => MyFavorite()),
 
   GetPage(name: AppRoute.settingsPage, page: () => SettingsPage()),
+
+  GetPage(name: AppRoute.cart, page: () => Cart()),
 ];

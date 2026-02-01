@@ -1,9 +1,11 @@
 import 'package:ecommerceapp/controller/homescreen_controller.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
+import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:ecommerceapp/view/widget/home/custombuttomappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,7 +21,9 @@ class HomeScreen extends StatelessWidget {
               shape: CircleBorder(),
               elevation: 20,
               backgroundColor: AppColor.appbarcolor,
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(AppRoute.cart);
+              },
               child: Icon(
                 Icons.shopping_basket_outlined,
                 color: AppColor.primarycolor,

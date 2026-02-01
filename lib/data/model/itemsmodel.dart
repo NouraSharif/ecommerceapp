@@ -6,7 +6,7 @@ class ItemsModel {
   String? itemsDescAr;
   int? itemsCount;
   int? itemsActive;
-  Null itemsPrice;
+  int? itemsPrice;
   int? itemsDiscount;
   String? itemsDate;
   int? itemsCat;
