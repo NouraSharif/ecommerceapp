@@ -1,12 +1,17 @@
+import 'package:ecommerceapp/controller/home_controller.dart';
 import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/functions/handlingdata.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/favorite/myfavoritedata.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-class MyFavoriteController extends GetxController {
+abstract class Myfavorite extends SearchItems {
+  getData();
+  deletefromfavorite(String favoriteid);
+}
+
+class MyFavoriteControllerImp extends Myfavorite {
   MyFavoriteData myfavoritedata = MyFavoriteData();
   StatusRequest statusRequest = StatusRequest.none;
 
@@ -14,6 +19,7 @@ class MyFavoriteController extends GetxController {
 
   List data = [];
 
+  @override
   getData() async {
     statusRequest = StatusRequest.loading;
     update();
@@ -35,6 +41,7 @@ class MyFavoriteController extends GetxController {
 
   //بدون async&await
   //للحذف مباشرة وبالتالي السرعة في اداء الابليكشن
+  @override
   deletefromfavorite(String favoriteid) async {
     // حذف فوري من الواجهة
     data.removeWhere(

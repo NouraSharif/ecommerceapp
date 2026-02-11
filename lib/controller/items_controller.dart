@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/controller/home_controller.dart';
 import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:ecommerceapp/core/functions/handlingdata.dart';
@@ -7,9 +8,8 @@ import 'package:ecommerceapp/data/model/itemsmodel.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-abstract class ItemsController extends GetxController {
+abstract class ItemsController extends SearchItems {
   initialData();
   changeCat(int val, String categoriesid);
   getItems(String categoriesid);

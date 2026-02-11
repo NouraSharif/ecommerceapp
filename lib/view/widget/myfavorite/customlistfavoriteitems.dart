@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-class CustomListFavoriteItems extends GetView<MyFavoriteController> {
+class CustomListFavoriteItems extends GetView<MyFavoriteControllerImp> {
   const CustomListFavoriteItems({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<MyFavoriteController>(
+    return GetBuilder<MyFavoriteControllerImp>(
       builder: (controller) {
         if (controller.data.isEmpty) {
           return Center(
@@ -48,7 +48,7 @@ class CustomListFavoriteItems extends GetView<MyFavoriteController> {
 }
 
 // ignore: must_be_immutable
-class MyFavoriteItems extends GetView<MyFavoriteController> {
+class MyFavoriteItems extends GetView<MyFavoriteControllerImp> {
   MyFavoriteModel myFavoriteModel;
 
   MyFavoriteItems({super.key, required this.myFavoriteModel});

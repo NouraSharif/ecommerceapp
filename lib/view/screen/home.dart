@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerceapp/controller/home_controller.dart';
 import 'package:ecommerceapp/core/class/handlingdataview.dart';
 import 'package:ecommerceapp/core/constant/routes.dart';
+import 'package:ecommerceapp/data/model/itemsmodel.dart';
+import 'package:ecommerceapp/linkapi.dart';
 import 'package:ecommerceapp/view/widget/customappbar.dart';
 import 'package:ecommerceapp/view/widget/home/customcurdhome.dart';
 import 'package:ecommerceapp/view/widget/home/customtitlehome.dart';
@@ -11,6 +14,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,36 +25,108 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: GetBuilder<HomeControllerImp>(
         builder:
-            (controller) => HandlingDataView(
-              statusRequest: controller.statusRequest,
-              widget: Container(
-                padding: EdgeInsets.only(left: 16, right: 16, top: 16),
-                child: ListView(
-                  children: [
-                    CustomAppBar(
-                      titleappBar: "Find Product",
-                      onPressedSearch: () {},
-                      onPressedfavorite: () {
-                        Get.toNamed(AppRoute.myfavorite);
-                      },
-                    ),
-                    SizedBox(height: 15),
-                    CustomCurdHome(
-                      title: "A Summer Surprise",
-                      body: "Cashback 20%",
-                    ),
-                    SizedBox(height: 5),
-                    CustomTitleHome(title: "Categories"),
-                    ListCategoriesHome(),
-                    CustomTitleHome(title: "Product For You"),
-                    ListItemsHome(),
-                    CustomTitleHome(title: "offer"),
-                    ListItemsHome(),
-                  ],
-                ),
+            (controller) => Container(
+              padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+              child: ListView(
+                children: [
+                  CustomAppBar(
+                    titleappBar: "Find Product",
+                    myController: controller.search,
+                    onPressedSearch: () {
+                      controller.onSearchItems();
+                    },
+                    onPressedfavorite: () {
+                      Get.toNamed(AppRoute.myfavorite);
+                    },
+                    onChanged: (val) {
+                      controller.checkSearch(val);
+                    },
+                  ),
+                  SizedBox(height: 15),
+                  HandlingDataView(
+                    statusRequest: controller.statusRequest,
+                    widget:
+                        !controller.isSearch
+                            ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomCurdHome(
+                                  title: "A Summer Surprise",
+                                  body: "Cashback 20%",
+                                ),
+                                SizedBox(height: 5),
+                                CustomTitleHome(title: "Categories"),
+                                ListCategoriesHome(),
+                                CustomTitleHome(title: "Product For You"),
+                                ListItemsHome(),
+                                CustomTitleHome(title: "offer"),
+                                ListItemsHome(),
+                              ],
+                            )
+                            : ListSearchItems(
+                              listSearchItems:
+                                  controller.searchItems
+                                      .map((e) => ItemsModel.fromJson(e))
+                                      .toList(),
+                            ),
+                  ),
+                ],
               ),
             ),
       ),
+    );
+  }
+}
+
+class ListSearchItems extends GetView<HomeControllerImp> {
+  final List<ItemsModel> listSearchItems;
+  const ListSearchItems({super.key, required this.listSearchItems});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: listSearchItems.length,
+      itemBuilder: (context, i) {
+        return InkWell(
+          onTap: () {
+            controller.goToProductDetails(listSearchItems[i]);
+          },
+          child: SizedBox(
+            height: 100,
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: SizedBox.expand(
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl:
+                            '${AppLink.images}/${listSearchItems[i].itemsImage}',
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: ListTile(
+                      title: Text(
+                        '${listSearchItems[i].itemsName}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      subtitle: Text("${listSearchItems[i].categoriesName}"),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
