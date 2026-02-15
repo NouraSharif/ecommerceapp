@@ -22,8 +22,6 @@ abstract class HomeController extends SearchItems {
 class HomeControllerImp extends HomeController {
   MyServices myservices = Get.find();
 
-  HomeData homeData = HomeData();
-  StatusRequest statusRequest = StatusRequest.none;
   List categories = [];
   List items = [];
 
@@ -92,10 +90,10 @@ class HomeControllerImp extends HomeController {
   */
   @override
   void onInit() {
+    super.onInit();
     getdata();
     initialData();
-    // search = TextEditingController();
-    super.onInit();
+    search = TextEditingController();
   }
 
   @override
@@ -123,25 +121,30 @@ class SearchItems extends GetxController {
   HomeData homeData = HomeData();
   StatusRequest statusRequest = StatusRequest.none;
 
-  checkSearch(val) {
+  void checkSearch(val) {
     if (val.isEmpty) {
       isSearch = false;
     }
     update();
   }
 
-  onSearchItems() {
+  void onSearchItems() {
     isSearch = true;
     searchData();
     update();
   }
 
-  searchData() async {
+  Future<void> searchData() async {
     searchItems.clear();
     statusRequest = StatusRequest.loading;
     update();
+    if (search == null || search!.text.isEmpty) {
+      statusRequest = StatusRequest.none;
+      update();
+      return;
+    }
     var response = await homeData.search(search!.text);
-    print("================================$response");
+    //print("================================$response");
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == 'success') {
@@ -149,11 +152,5 @@ class SearchItems extends GetxController {
       }
       update();
     } else {}
-  }
-
-  @override
-  onInit() {
-    search = TextEditingController();
-    super.onInit();
   }
 }

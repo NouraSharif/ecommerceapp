@@ -3,6 +3,7 @@ import 'package:ecommerceapp/controller/favorite/favorite_controller.dart';
 import 'package:ecommerceapp/controller/items_controller.dart';
 import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
+import 'package:ecommerceapp/core/constant/imageasset.dart';
 import 'package:ecommerceapp/data/model/itemsmodel.dart';
 import 'package:ecommerceapp/linkapi.dart';
 import 'package:flutter/material.dart';
@@ -56,86 +57,112 @@ class ListItems extends GetView<ItemsControllerImp> {
       onTap: () {
         controller.goToProductDetails(itemsModel);
       },
-      child: Card(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      child: Stack(
+        children: [
+          Card(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
 
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 11.0),
-                child: Hero(
-                  tag: itemsModel.itemsId!,
-                  child: CachedNetworkImage(
-                    imageUrl: "${AppLink.images}/${itemsModel.itemsImage}",
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text(itemsModel.itemsName!, textAlign: TextAlign.center),
-            ),
-            Row(
               children: [
-                Text(
-                  "     Rating",
-                  style: TextStyle(
-                    color: AppColor.primarycolor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 11.0),
+                    child: Hero(
+                      tag: itemsModel.itemsId!,
+                      child: CachedNetworkImage(
+                        imageUrl: "${AppLink.images}/${itemsModel.itemsImage}",
+                        fit: BoxFit.contain,
+                      ),
+                    ),
                   ),
                 ),
-                SizedBox(width: 40),
-                ...List.generate(
-                  4,
-                  (index) => Icon(Icons.star, color: Colors.amber),
+                ListTile(
+                  title: Text(
+                    itemsModel.itemsName!,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "     Rating",
+                      style: TextStyle(
+                        color: AppColor.primarycolor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(width: 40),
+                    ...List.generate(
+                      4,
+                      (index) => Icon(Icons.star, color: Colors.amber),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(9.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        " ${itemsModel.itemsPriceAfterDiscount}\$",
+                        style: TextStyle(
+                          color: AppColor.blue,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      GetBuilder<FavoriteController>(
+                        builder:
+                            (controller) => IconButton(
+                              onPressed: () {
+                                if (controllerfav.isFavorites[itemsModel
+                                        .itemsId] ==
+                                    0) {
+                                  controllerfav.setFavorite(
+                                    itemsModel.itemsId!,
+                                    1,
+                                  );
+                                  controllerfav.addFavorite(
+                                    itemsModel.itemsId.toString(),
+                                  );
+                                } else {
+                                  controllerfav.setFavorite(
+                                    itemsModel.itemsId!,
+                                    0,
+                                  );
+                                  controllerfav.removeFavorite(
+                                    itemsModel.itemsId.toString(),
+                                  );
+                                }
+                              },
+                              icon: Icon(
+                                controllerfav.isFavorites[itemsModel.itemsId] ==
+                                        1
+                                    ? Icons.favorite_outlined
+                                    : Icons.favorite_border,
+                                color: AppColor.secondaryColor,
+                              ),
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(9.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "  200.50\$",
-                    style: TextStyle(
-                      color: AppColor.blue,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  GetBuilder<FavoriteController>(
-                    builder:
-                        (controller) => IconButton(
-                          onPressed: () {
-                            if (controllerfav.isFavorites[itemsModel.itemsId] ==
-                                0) {
-                              controllerfav.setFavorite(itemsModel.itemsId!, 1);
-                              controllerfav.addFavorite(
-                                itemsModel.itemsId.toString(),
-                              );
-                            } else {
-                              controllerfav.setFavorite(itemsModel.itemsId!, 0);
-                              controllerfav.removeFavorite(
-                                itemsModel.itemsId.toString(),
-                              );
-                            }
-                          },
-                          icon: Icon(
-                            controllerfav.isFavorites[itemsModel.itemsId] == 1
-                                ? Icons.favorite_outlined
-                                : Icons.favorite_border,
-                            color: AppColor.secondaryColor,
-                          ),
-                        ),
-                  ),
-                ],
+          ),
+          if (itemsModel.itemsDiscount != 0)
+            Positioned(
+              top: -3,
+              left: -2,
+              child: Image.asset(
+                AppImageAsset.sale,
+                width: 60,
+                height: 60,
+                fit: BoxFit.contain,
               ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }

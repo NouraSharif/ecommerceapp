@@ -5,6 +5,7 @@ class AppImageAsset {
   static const String onBoardingImageTwo = "$rootImages/onboardingTwo.png";
   static const String onBoardingImageThree = "$rootImages/onboardingThree.png";
   static const String onBoardingImageFour = "$rootImages/onboardingFour.png";
+  static const String sale = "$rootImages/sale.png";
 
   static const String rootLottie = "assets/lottie";
 
