@@ -1,8 +1,10 @@
 import 'package:ecommerceapp/controller/settings_controller.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
+import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -74,32 +76,31 @@ class SettingsPage extends StatelessWidget {
                               horizontal: 5,
                             ),
                             child: ListTile(
+                              onTap: () {
+                                Get.toNamed(AppRoute.addressview);
+                              },
                               title: Text(
                                 "Address",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              trailing: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.location_on_outlined,
-                                  size: 30,
-                                ),
+                              trailing: Icon(
+                                Icons.location_on_outlined,
+                                size: 30,
                               ),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: ListTile(
+                              onTap: () {},
+
                               title: Text(
                                 "About us",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              trailing: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.help_outline_rounded,
-                                  size: 30,
-                                ),
+                              trailing: Icon(
+                                Icons.help_outline_rounded,
+                                size: 30,
                               ),
                             ),
                           ),
@@ -109,16 +110,15 @@ class SettingsPage extends StatelessWidget {
                               horizontal: 5,
                             ),
                             child: ListTile(
+                              onTap: () {},
+
                               title: Text(
                                 "Concat us",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              trailing: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.phone_callback_outlined,
-                                  size: 30,
-                                ),
+                              trailing: Icon(
+                                Icons.phone_callback_outlined,
+                                size: 30,
                               ),
                             ),
                           ),
