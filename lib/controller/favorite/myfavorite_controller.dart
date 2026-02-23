@@ -3,6 +3,7 @@ import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/functions/handlingdata.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/favorite/myfavoritedata.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
@@ -13,7 +14,6 @@ abstract class Myfavorite extends SearchItems {
 
 class MyFavoriteControllerImp extends Myfavorite {
   MyFavoriteData myfavoritedata = MyFavoriteData();
-  StatusRequest statusRequest = StatusRequest.none;
 
   MyServices myServices = Get.find();
 
@@ -55,6 +55,7 @@ class MyFavoriteControllerImp extends Myfavorite {
 
   @override
   void onInit() {
+    search = TextEditingController();
     getData();
     super.onInit();
   }

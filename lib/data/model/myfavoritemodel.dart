@@ -14,8 +14,8 @@ class MyFavoriteModel {
   String? itemsName;
   String? itemsNameAr;
   String? itemsDesc;
-  Null itemsDescAr;
-  Null itemsCount;
+  String? itemsDescAr;
+  int? itemsCount;
   int? itemsActive;
   int? itemsPrice;
   int? itemsDiscount;

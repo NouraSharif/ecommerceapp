@@ -70,6 +70,9 @@ class Categories extends StatelessWidget {
               height: 70,
               width: 125,
               fit: BoxFit.cover,
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              placeholder:
+                  (context, url) => Center(child: CircularProgressIndicator()),
               // يحفظ الصور مؤقتاً في memory cache
               // لا يعيد تحميل الصور عند التمرير
             ),

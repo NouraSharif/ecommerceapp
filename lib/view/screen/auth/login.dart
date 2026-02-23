@@ -21,7 +21,7 @@ class Login extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Sign In',
+          '9'.tr,
           style: Theme.of(
             context,
           ).textTheme.headlineLarge!.copyWith(color: AppColor.greyTitle),
@@ -42,16 +42,13 @@ class Login extends StatelessWidget {
                   child: ListView(
                     children: [
                       Image.asset("assets/images/logo.png", height: 150),
-                      CustomTextTitleAuth(texttitle: "Welcome Back"),
+                      CustomTextTitleAuth(texttitle: "10".tr),
                       const SizedBox(height: 20),
-                      CustomTextBodyAuth(
-                        textbody:
-                            "SignIn With Your Email And Password Or\n Continue With Social Media",
-                      ),
+                      CustomTextBodyAuth(textbody: "11".tr),
                       const SizedBox(height: 20),
                       CustomTextFormAuth(
-                        labeltext: "Email",
-                        hinttext: "Enter Your Email",
+                        labeltext: "18".tr,
+                        hinttext: "12".tr,
                         icondata: Icons.email_outlined,
                         mycontroller: controller.email,
                         validator: (val) {
@@ -61,8 +58,8 @@ class Login extends StatelessWidget {
                       GetBuilder<LoginControllerImp>(
                         builder:
                             (controller) => CustomTextFormAuth(
-                              labeltext: "Password",
-                              hinttext: "Enter Your Password",
+                              labeltext: "19".tr,
+                              hinttext: "13".tr,
                               obscureText: controller.isShowPassword,
                               icondata:
                                   controller.isShowPassword
@@ -83,10 +80,7 @@ class Login extends StatelessWidget {
                         },
                         child: Container(
                           padding: EdgeInsets.only(right: 36),
-                          child: Text(
-                            "Forgot Password",
-                            textAlign: TextAlign.right,
-                          ),
+                          child: Text("14".tr, textAlign: TextAlign.right),
                         ),
                       ),
                       const SizedBox(height: 13),
@@ -94,11 +88,11 @@ class Login extends StatelessWidget {
                         onPressed: () {
                           controller.login();
                         },
-                        text: "Sign In",
+                        text: "15".tr,
                       ),
                       CustomTextSignUpOrSignIn(
-                        textone: "Don't have an account? ",
-                        texttwo: "SignUp",
+                        textone: "16".tr,
+                        texttwo: "17".tr,
                         ontap: () {
                           controller.gotToSignUp();
                         },

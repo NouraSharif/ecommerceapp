@@ -5,7 +5,7 @@ class MyTranslation extends Translations {
   Map<String, Map<String, String>> get keys => {
     "ar": {
       "1": "اختر اللغة",
-      "2": "اختر المنتجة",
+      "2": "اختر منتجك",
       "3": "نحن لدينا 100 الف منتج  , اختر \n  منتجك  من  متجرنا",
       "4": "سهل وامن للشراء",
       "5": "يمكنك الدفع كاش او \n من خلال بوابات الدفع الالكترونية",
@@ -20,7 +20,7 @@ class MyTranslation extends Translations {
       "13": "ادخل كلمة المرور",
       "14": "هل نسيت كلمة المرور",
       "15": "تسجيل الدخول",
-      "16": "ليس لديك حساب ? ",
+      "16": "ليس لديك حساب ؟ ",
       "17": "انشاء حساب",
       "18": "البريد الالكتروني",
       "19": "كلمة المرور",
@@ -44,6 +44,13 @@ class MyTranslation extends Translations {
       "36": "تم اعادة تعيين كلمة المرور بنجاح",
       "37": "تهانينا",
       "38": "تم التسجيل بنجاح",
+      "39": "استمر",
+      "40":
+          "الدفع السهل والآمن\n طريقة موثوقة من قبل عملائنا \n من جميع أنحاء العالم.",
+      "41":
+          "أفضل متتبع تم استخدامه\n لتتبع طلبك. ستعرف مكان\n منتجك في الوقت الحالي.",
+      "42": "توصيل سريع وموثوق. نحن\n نوصل منتجك بأسرع طريقة ممكنة.",
+      "43": "توصيل سريع",
     },
     "en": {
       "1": "Choose Language",
@@ -57,13 +64,13 @@ class MyTranslation extends Translations {
       "8": "Continue",
       "9": "Sign In",
       "10": "Welcome Back",
-      "11": "Sign In Your Email And Password Or  Continue With Social Media",
+      "11": "Sign In Your Email And Password Or\n  Continue With Social Media",
       "12": "Enter Your Email",
       "13": "Enter Your Password",
-      "14": "Forget Password",
+      "14": "         Forget Password",
       "15": "Sign In",
-      "16": "Dont Have An Account ? ",
-      "17": "Sign Up",
+      "16": "Dont Have An Account? ",
+      "17": "SignUp",
       "18": "Email",
       "19": "Password",
       "20": "Username",
@@ -86,6 +93,14 @@ class MyTranslation extends Translations {
       "36": "Password has been reset successfully",
       "37": "congratulations",
       "38": "successfully registered",
+      "39": "Continue",
+      "40":
+          "Easy Checkout & Safe Payment\n method. Trusted by our Customers \n from all over the world.",
+      "41":
+          "Best Tracker has been Used For\n Track your order.You`ll know where\n your product is at the moment.",
+      "42":
+          "Reliable And Fast Delivery. We\n Devliver your product the fastest\n way possible.",
+      "43": "Fast Delivery",
     },
   };
 }

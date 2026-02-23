@@ -120,6 +120,9 @@ flutter:
     - assets/images/avatar.png
     - assets/images/sale.png
     - assets/images/map.jpg
+    - assets/images/p1.jpg
+    - assets/images/p2.jpg
+    - assets/images/p3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

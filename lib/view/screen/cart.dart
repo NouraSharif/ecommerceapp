@@ -20,7 +20,10 @@ class Cart extends StatelessWidget {
             bottomNavigationBar: BottomNavigationBarCart(
               price: controller.totalprice,
               shipping: "50",
-              totalPrice: "250",
+              totalPrice:
+                  controller.totalprice == 0
+                      ? "0"
+                      : "${controller.totalprice + 50}",
               onPressed: () {},
             ),
             body: HandlingDataView(

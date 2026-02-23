@@ -64,6 +64,10 @@ class MyFavoriteItems extends GetView<MyFavoriteControllerImp> {
               child: CachedNetworkImage(
                 imageUrl: "${AppLink.images}/${myFavoriteModel.itemsImage}",
                 fit: BoxFit.contain,
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                placeholder:
+                    (context, url) =>
+                        Center(child: CircularProgressIndicator()),
               ),
             ),
           ),
@@ -99,7 +103,7 @@ class MyFavoriteItems extends GetView<MyFavoriteControllerImp> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "200.50\$",
+                  "${myFavoriteModel.itemsPrice}\$",
                   style: TextStyle(
                     color: AppColor.blue,
                     fontSize: 20,

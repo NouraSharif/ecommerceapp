@@ -1,6 +1,7 @@
 import 'package:ecommerceapp/controller/onboarding_controller.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get/state_manager.dart';
 
 class CustomButtonOnBoarding extends GetView<OnBoardingControllerImp> {
@@ -19,7 +20,7 @@ class CustomButtonOnBoarding extends GetView<OnBoardingControllerImp> {
       onPressed: () {
         controller.next();
       },
-      child: const Text("Continue", style: TextStyle(color: Colors.white)),
+      child: Text("39".tr, style: TextStyle(color: Colors.white)),
     );
   }
 }

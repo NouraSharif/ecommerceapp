@@ -72,6 +72,10 @@ class ListItems extends GetView<ItemsControllerImp> {
                       child: CachedNetworkImage(
                         imageUrl: "${AppLink.images}/${itemsModel.itemsImage}",
                         fit: BoxFit.contain,
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        placeholder:
+                            (context, url) =>
+                                Center(child: CircularProgressIndicator()),
                       ),
                     ),
                   ),

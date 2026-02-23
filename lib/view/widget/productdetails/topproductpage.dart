@@ -31,6 +31,9 @@ class TopProductPage extends GetView<ProductDetailsControllerImp> {
           child: CachedNetworkImage(
             height: 190,
             imageUrl: "${AppLink.images}/${controller.itemsModel.itemsImage}",
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            placeholder:
+                (context, url) => Center(child: CircularProgressIndicator()),
           ),
         ),
       ],

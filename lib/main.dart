@@ -11,9 +11,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
   await Get.putAsync<MyServices>(() async {
     return await MyServices().initWithoutFirebase();
   });
