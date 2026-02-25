@@ -5,6 +5,7 @@ import 'package:ecommerceapp/core/functions/handlingdata.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/items.dart';
 import 'package:ecommerceapp/data/model/itemsmodel.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -24,11 +25,12 @@ class ItemsControllerImp extends ItemsController {
   ItemsData itemsData = ItemsData();
   List items = [];
 
-  StatusRequest statusRequest = StatusRequest.none;
+  //StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
 
   @override
   void onInit() {
+    search = TextEditingController();
     initialData();
     super.onInit();
   }

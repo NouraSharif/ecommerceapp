@@ -58,7 +58,33 @@ class HomePage extends StatelessWidget {
                                 CustomTitleHome(title: "Categories"),
                                 ListCategoriesHome(),
                                 CustomTitleHome(title: "Product For You"),
-                                ListItemsHome(),
+                                //ListItemsHome(),
+                                SizedBox(
+                                  height: 200,
+                                  child: ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    children: List.generate(
+                                      3,
+                                      (index) => Padding(
+                                        padding: const EdgeInsets.only(
+                                          right: 8,
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                          child: Image.asset(
+                                            "assets/images/p${index + 1}.jpg",
+                                            width: 300,
+                                            height: 180,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                //----------
                                 CustomTitleHome(title: "offer"),
                                 ListItemsHome(),
                               ],

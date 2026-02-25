@@ -47,6 +47,10 @@ class ItemsHome extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: "${AppLink.images}/${itemsmodel.itemsImage}",
                 fit: BoxFit.cover,
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                placeholder:
+                    (context, url) =>
+                        Center(child: CircularProgressIndicator()),
               ),
             ),
           ),

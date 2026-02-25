@@ -30,7 +30,7 @@ class CartController extends GetxController {
     Get.rawSnackbar(
       title: "Success",
       message: "Item Added to Cart",
-      backgroundColor: AppColor.grey,
+      backgroundColor: AppColor.secondaryColor,
     );
     update();
     return response;
@@ -47,7 +47,7 @@ class CartController extends GetxController {
     Get.rawSnackbar(
       title: "Success",
       message: "Item Remove From Cart",
-      backgroundColor: AppColor.grey,
+      backgroundColor: AppColor.secondaryColor,
     );
     update();
     return response;

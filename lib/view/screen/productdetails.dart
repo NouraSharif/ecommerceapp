@@ -70,7 +70,17 @@ class ProductDetails extends StatelessWidget {
                             (controller) => PriceAndCount(
                               countnumber: controller.itemscount.toString(),
                               price:
-                                  "${controller.itemsModel.itemsPriceAfterDiscount}",
+                                  //  "${controller.itemsModel.itemsPriceAfterDiscount}",
+                                  controller
+                                              .itemsModel
+                                              .itemsPriceAfterDiscount !=
+                                          null
+                                      ? controller
+                                          .itemsModel
+                                          .itemsPriceAfterDiscount
+                                          .toString()
+                                      : controller.itemsModel.itemsPrice
+                                          .toString(),
                               onPressedadd: () {
                                 controller.add();
                               },

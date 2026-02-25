@@ -4,26 +4,23 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 List<OnBoardingModel> onboardingList = [
   OnBoardingModel(
-    title: "1".tr,
+    title: "2".tr,
     image: AppImageAsset.onBoardingImageOne,
     body: "3".tr,
   ),
   OnBoardingModel(
     title: "4".tr,
     image: AppImageAsset.onBoardingImageTwo,
-    body:
-        "Easy Checkout & Safe Payment\n method. Trusted by our Customers \n from all over the world.",
+    body: "40".tr,
   ),
   OnBoardingModel(
-    title: "Track Your Order",
+    title: "6".tr,
     image: AppImageAsset.onBoardingImageThree,
-    body:
-        "Best Tracker has been Used For\n Track your order.You`ll know where\n your product is at the moment.",
+    body: "41".tr,
   ),
   OnBoardingModel(
-    title: "Fast Delivery",
+    title: "43".tr,
     image: AppImageAsset.onBoardingImageFour,
-    body:
-        "Reliable And Fast Delivery. We\n Devliver your product the fastest\n way possible.",
+    body: "42".tr,
   ),
 ];
