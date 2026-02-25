@@ -1,16 +1,74 @@
-# ecommerceapp
+# Flutter E-Commerce Application (Frontend)
 
-A new Flutter project.
+## 📌 Project Overview
 
-## Getting Started
+This is the frontend part of the E-Commerce Graduation Project developed using Flutter.
 
-This project is a starting point for a Flutter application.
+The application connects to a backend API built with PHP and MySQL and runs locally using XAMPP during development.
 
-A few resources to get you started if this is your first Flutter project:
+The system follows MVC architecture and uses GetX for state management.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚀 Technologies Used
+
+- Flutter
+- Dart
+- GetX (State Management)
+- REST API
+- HTTP Package
+- Localization (Arabic & English)
+- OTP Authentication
+- Backend: PHP
+- Database: MySQL (via XAMPP)
+
+---
+
+## 🎯 Features
+
+### 🔐 Authentication
+- Login using OTP
+- User authentication via backend API
+- Secure communication with server
+
+### 🏠 Application Pages
+- Onboarding Screens
+- Home Page
+  - Categories
+  - Items
+- Product Details Page
+- Cart Page
+- Favorites Page
+
+### 🌍 Localization
+- Supports two languages:
+  - English
+  - Arabic
+
+### 🛒 Cart & Favorites
+- Add / Remove items from cart
+- Add / Remove items from favorites
+- Data synced with backend database
+
+---
+
+## 🔗 Backend Connection
+
+The backend runs locally using XAMPP:
+API communication handled via HTTP requests.
+
+---
+
+## 🛠 Architecture
+- MVC Pattern
+- GetX for state management
+- Clean folder structure
+
+---
+
+## 👩‍💻 Author
+Noura Sharif
+
+---
+
+⭐ If you like this project, feel free to star the repository.
