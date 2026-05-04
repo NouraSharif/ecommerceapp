@@ -46,7 +46,7 @@ class CustomItemsCartList extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: ListTile(
-                  title: Text(itemsname, style: TextStyle(fontSize: 18)),
+                  title: Text(itemsname, style: TextStyle(fontSize: 15)),
                   subtitle: Text(
                     "$itemsprice\$",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

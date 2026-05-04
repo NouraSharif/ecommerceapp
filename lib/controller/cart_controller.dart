@@ -21,7 +21,6 @@ class CartController extends GetxController {
 
   addToCart(String itemsid) async {
     statusRequest = StatusRequest.loading;
-    update();
     var response = await cartData.add(
       myServices.sharedPreferences.getString("id")!,
       itemsid,
@@ -33,7 +32,6 @@ class CartController extends GetxController {
       backgroundColor: AppColor.secondaryColor,
     );
     update();
-    return response;
   }
 
   removeFromCart(String itemsid) async {
@@ -61,10 +59,12 @@ class CartController extends GetxController {
       myServices.sharedPreferences.getString("id")!,
     );
 
+    print("RESPONSE: $response");
+
     statusRequest = handlingData(response);
 
     if (statusRequest == StatusRequest.success) {
-      data.clear(); // مهم جدًا
+      data.clear();
       totalprice = 0;
       totalcount = 0;
 
@@ -78,9 +78,9 @@ class CartController extends GetxController {
         totalprice = double.parse(countprice['totalprice'].toString());
         totalcount = int.parse(countprice['totalcount'].toString());
       }
-
-      update();
     }
+
+    update();
   }
 
   resetPage() {

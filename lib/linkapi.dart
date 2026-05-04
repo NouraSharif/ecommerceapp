@@ -1,5 +1,7 @@
 class AppLink {
-  static const String server = "http://localhost/ecommerce";
+  // static const String server = "http://localhost/ecommerce";
+  static const String server = "http://10.0.2.2/ecommerce";
+
   static const String test = "$server/test.php";
 
   //===================auth===================
@@ -36,4 +38,10 @@ class AppLink {
   static const String removecart = "$cart/remove.php";
   static const String getcountitems = "$cart/getcountitems.php";
   static const String viewcart = "$cart/view.php";
+
+  //================Address==============
+  static const String address = "$server/address";
+  static const String getaddress = "$address/view.php";
+  static const String addaddress = "$address/add.php";
+  static const String deleteadderss = "$address/delete.php";
 }

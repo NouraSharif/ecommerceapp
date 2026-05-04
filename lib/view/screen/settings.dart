@@ -45,19 +45,19 @@ class SettingsPage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 90),
+          SizedBox(height: 100),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: SizedBox(
-              height: 300,
+              height: 315,
               child: GetBuilder<SettingsPageController>(
                 builder:
                     (controller) => Card(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0, left: 5),
-                            child: ListTile(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            ListTile(
                               title: Text(
                                 "Disable Notification",
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -69,13 +69,7 @@ class SettingsPage extends StatelessWidget {
                                 },
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 4,
-                              horizontal: 5,
-                            ),
-                            child: ListTile(
+                            ListTile(
                               onTap: () {
                                 Get.toNamed(AppRoute.addressview);
                               },
@@ -83,48 +77,45 @@ class SettingsPage extends StatelessWidget {
                                 "Address",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              trailing: Icon(
-                                Icons.location_on_outlined,
-                                size: 30,
+                              trailing: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.location_on_outlined,
+                                  size: 28,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: ListTile(
+                            ListTile(
                               onTap: () {},
 
                               title: Text(
                                 "About us",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              trailing: Icon(
-                                Icons.help_outline_rounded,
-                                size: 30,
+                              trailing: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.help_outline_rounded,
+                                  size: 28,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 5,
-                            ),
-                            child: ListTile(
+                            ListTile(
                               onTap: () {},
 
                               title: Text(
                                 "Concat us",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              trailing: Icon(
-                                Icons.phone_callback_outlined,
-                                size: 30,
+                              trailing: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.phone_callback_outlined,
+                                  size: 28,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: ListTile(
+                            ListTile(
                               title: Text(
                                 "Logout",
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -133,11 +124,14 @@ class SettingsPage extends StatelessWidget {
                                 onPressed: () {
                                   controller.logout();
                                 },
-                                icon: Icon(Icons.exit_to_app, size: 30),
+                                icon: Icon(
+                                  Icons.exit_to_app_outlined,
+                                  size: 28,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
               ),

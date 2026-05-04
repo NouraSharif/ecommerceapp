@@ -2,12 +2,14 @@ import 'package:ecommerceapp/core/lcalization/changelocale.dart';
 import 'package:ecommerceapp/core/lcalization/translation.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/routes.dart';
+import 'package:ecommerceapp/view/screen/language.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 //import 'package:ecommerceapp/firebase_options.dart';
-//import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_cor
+//e.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +34,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: localeController.apptheme,
-      //home: const Language(),
+      home: const Language(),
+      //home: Test(),
       getPages: routes,
     );
   }

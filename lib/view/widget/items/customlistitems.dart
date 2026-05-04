@@ -31,6 +31,7 @@ class CustomListItems extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
+            childAspectRatio: 0.7,
           ),
           itemBuilder: (context, i) {
             controllerfav.isFavorites.addAll({
@@ -69,13 +70,27 @@ class ListItems extends GetView<ItemsControllerImp> {
                     padding: const EdgeInsets.only(top: 11.0),
                     child: Hero(
                       tag: itemsModel.itemsId!,
-                      child: CachedNetworkImage(
-                        imageUrl: "${AppLink.images}/${itemsModel.itemsImage}",
-                        fit: BoxFit.contain,
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                        placeholder:
-                            (context, url) =>
-                                Center(child: CircularProgressIndicator()),
+
+                      child: Builder(
+                        builder: (context) {
+                          print("IMAGE NAME: ${itemsModel.itemsImage}");
+                          print(
+                            "FULL URL: ${AppLink.images}/${itemsModel.itemsImage}",
+                          );
+                          return CachedNetworkImage(
+                            imageUrl:
+                                "${AppLink.images}/${itemsModel.itemsImage}",
+
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double.infinity,
+                            errorWidget:
+                                (context, url, error) => Icon(Icons.error),
+                            placeholder:
+                                (context, url) =>
+                                    Center(child: CircularProgressIndicator()),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -87,16 +102,17 @@ class ListItems extends GetView<ItemsControllerImp> {
                   ),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "     Rating",
+                      "   Rating ",
                       style: TextStyle(
                         color: AppColor.primarycolor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(width: 40),
+
                     ...List.generate(
                       4,
                       (index) => Icon(Icons.star, color: Colors.amber),
