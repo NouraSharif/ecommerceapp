@@ -35,6 +35,7 @@ class CustomListFavoriteItems extends GetView<MyFavoriteControllerImp> {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
+            childAspectRatio: 0.6, // 👈 مهم جدًا
           ),
           itemBuilder: (context, i) {
             return MyFavoriteItems(
@@ -58,17 +59,15 @@ class MyFavoriteItems extends GetView<MyFavoriteControllerImp> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 11.0),
-              child: CachedNetworkImage(
-                imageUrl: "${AppLink.images}/${myFavoriteModel.itemsImage}",
-                fit: BoxFit.contain,
-                errorWidget: (context, url, error) => Icon(Icons.error),
-                placeholder:
-                    (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-              ),
+          Padding(
+            padding: const EdgeInsets.only(top: 11.0),
+            child: CachedNetworkImage(
+              height: 120,
+              imageUrl: "${AppLink.images}/${myFavoriteModel.itemsImage}",
+              fit: BoxFit.cover,
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              placeholder:
+                  (context, url) => Center(child: CircularProgressIndicator()),
             ),
           ),
 
@@ -80,16 +79,16 @@ class MyFavoriteItems extends GetView<MyFavoriteControllerImp> {
           ),
 
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "     Rating",
+                "Rating   ",
                 style: TextStyle(
                   color: AppColor.primarycolor,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
-              SizedBox(width: 40),
               ...List.generate(
                 4,
                 (index) => Icon(Icons.star, color: Colors.amber),

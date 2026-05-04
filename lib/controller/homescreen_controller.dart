@@ -10,7 +10,8 @@ abstract class HomeScreen extends GetxController {
 class HomeScreenControllerImp extends HomeScreen {
   int currentpage = 0;
   List<Widget> listpage = [
-    const HomePage(),
+    // const HomePage(),
+    HomePage(),
     Center(child: Text("Settings")),
     Center(child: Text("favorit")),
     SettingsPage(),

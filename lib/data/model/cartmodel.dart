@@ -38,7 +38,11 @@ class CartModel {
   });
 
   CartModel.fromJson(Map<String, dynamic> json) {
-    itemsprice = json['itemsprice'];
+    itemsprice =
+        json['itemsprice'] == null
+            ? null
+            : (json['itemsprice'] as num).toDouble();
+
     countitems = json['countitems'];
     cartId = json['cart_id'];
     cartUsersid = json['cart_usersid'];
@@ -50,7 +54,10 @@ class CartModel {
     itemsDescAr = json['items_desc_ar'];
     itemsCount = json['items_count'];
     itemsActive = json['items_active'];
+
+    // 🔥 هذا التصحيح
     itemsPrice = json['items_price'];
+
     itemsDiscount = json['items_discount'];
     itemsDate = json['items_date'];
     itemsCat = json['items_cat'];

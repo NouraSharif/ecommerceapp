@@ -60,11 +60,13 @@ class HomeControllerImp extends HomeController {
   @override
   getdata() async {
     statusRequest = StatusRequest.loading;
-    update();
+    //update();
     var response = await homeData.getData();
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == 'success') {
+        categories.clear();
+        items.clear();
         categories.addAll(response['categories']);
         items.addAll(response['items']);
       }
@@ -91,7 +93,11 @@ class HomeControllerImp extends HomeController {
   @override
   void onInit() {
     super.onInit();
-    getdata();
+    // getdata();
+    Future.delayed(Duration.zero, () {
+      getdata();
+    });
+
     initialData();
     search = TextEditingController();
   }

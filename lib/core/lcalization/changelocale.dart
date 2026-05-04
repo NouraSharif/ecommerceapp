@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:ecommerceapp/core/constant/apptheme.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -23,8 +24,34 @@ class LocaleController extends GetxController {
     Get.updateLocale(locale);
   }
 
+  requestPerLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      Get.snackbar("Waring", "الرجاء تشغيل الموقع على جهازك");
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        Get.snackbar("Waring", "الرجاء اعطاء صلاحية الموقع للتطبيق");
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      Get.snackbar(
+        "Waring",
+        "لا يمكنك استخدام التطبيق بدون اعطاء صلاحية الموقع",
+      );
+    }
+  }
+
   @override
   void onInit() {
+    requestPerLocation();
     String? lang = myServices.sharedPreferences.getString("lang");
     if (lang == "ar") {
       language = const Locale("ar");

@@ -61,7 +61,7 @@ dependencies:
   path: ^1.9.1
   #Qrcode
   qr_flutter: ^4.1.0
-  scan: ^1.6.0
+  mobile_scanner: ^7.2.0
   grouped_list: ^6.0.0
   url_launcher: ^6.3.2
   dropdown_search: ^6.0.2
@@ -119,7 +119,6 @@ flutter:
     - assets/lottie/Emptybox.json
     - assets/images/avatar.png
     - assets/images/sale.png
-    - assets/images/map.jpg
     - assets/images/p1.jpg
     - assets/images/p2.jpg
     - assets/images/p3.jpg

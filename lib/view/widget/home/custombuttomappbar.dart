@@ -20,11 +20,11 @@ class CustomButtomAppBar extends StatelessWidget {
     return GetBuilder<HomeScreenControllerImp>(
       builder:
           (controller) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 19),
             child: IconButton(
               alignment: Alignment.center,
               onPressed: onPressed,
-              icon: Icon(icon, color: color, size: 28),
+              icon: Icon(icon, color: color, size: 30),
             ),
           ),
     );

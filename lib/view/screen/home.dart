@@ -17,11 +17,12 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+  final HomeControllerImp controller = Get.put(HomeControllerImp());
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeControllerImp());
+    // Get.put(HomeControllerImp());
     return Scaffold(
       body: GetBuilder<HomeControllerImp>(
         builder:
