@@ -16,14 +16,7 @@ class AddressView extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ViewAddressController());
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: AppColor.appbarcolor,
-        title: const Text(
-          'Address',
-          style: TextStyle(color: AppColor.appbarcolor),
-        ),
-        backgroundColor: AppColor.primarycolor,
-      ),
+      appBar: AppBar(title: const Text('Address')),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.primarycolor,
         onPressed: () {

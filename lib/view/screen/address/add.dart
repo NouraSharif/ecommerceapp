@@ -1,6 +1,5 @@
 import 'package:ecommerceapp/controller/address/add_controller.dart';
 import 'package:ecommerceapp/core/class/handlingdataview.dart';
-import 'package:ecommerceapp/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -12,14 +11,7 @@ class AddressAdd extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(AddAddressController());
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: AppColor.appbarcolor,
-        title: const Text(
-          'Add New Address',
-          style: TextStyle(color: AppColor.appbarcolor),
-        ),
-        backgroundColor: AppColor.primarycolor,
-      ),
+      appBar: AppBar(title: const Text('Add New Address')),
 
       body: GetBuilder<AddAddressController>(
         builder:

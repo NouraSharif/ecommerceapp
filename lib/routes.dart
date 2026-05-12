@@ -14,6 +14,7 @@ import 'package:ecommerceapp/view/screen/auth/signup.dart';
 import 'package:ecommerceapp/view/screen/auth/success_signup.dart';
 import 'package:ecommerceapp/view/screen/auth/verifycodesignup.dart';
 import 'package:ecommerceapp/view/screen/cart.dart';
+import 'package:ecommerceapp/view/screen/checkout.dart';
 import 'package:ecommerceapp/view/screen/homescreen.dart';
 import 'package:ecommerceapp/view/screen/itesms.dart';
 import 'package:ecommerceapp/view/screen/language.dart';
@@ -22,6 +23,7 @@ import 'package:ecommerceapp/view/screen/onboarding.dart';
 import 'package:ecommerceapp/view/screen/productdetails.dart';
 import 'package:ecommerceapp/view/screen/settings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/utils.dart';
 
 List<GetPage<dynamic>> routes = [
   GetPage(
@@ -60,4 +62,6 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoute.addressadd, page: () => AddressAdd()),
   GetPage(name: AppRoute.addressedit, page: () => AddressEdit()),
   GetPage(name: AppRoute.adddetailsaddress, page: () => AddDetailsAddress()),
+
+  GetPage(name: AppRoute.checkout, page: () => const Checkout()),
 ];

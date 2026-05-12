@@ -11,6 +11,19 @@ ThemeData themeEnglish = ThemeData(
     ),
     bodyLarge: TextStyle(height: 2, color: AppColor.grey, fontSize: 16),
   ),
+  appBarTheme: AppBarTheme(
+    backgroundColor: Colors.grey[50],
+    elevation: 0,
+    centerTitle: true,
+    iconTheme: IconThemeData(color: AppColor.primarycolor),
+
+    titleTextStyle: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Cairo',
+      color: AppColor.primarycolor,
+    ),
+  ),
 );
 
 ThemeData themeArabic = ThemeData(
