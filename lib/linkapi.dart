@@ -44,4 +44,7 @@ class AppLink {
   static const String getaddress = "$address/view.php";
   static const String addaddress = "$address/add.php";
   static const String deleteadderss = "$address/delete.php";
+
+  //================coupon==============
+  static const String checkcoupon = "$server/coupon/checkcoupon.php";
 }

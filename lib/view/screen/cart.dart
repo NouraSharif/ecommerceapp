@@ -1,7 +1,6 @@
 import 'package:ecommerceapp/controller/cart_controller.dart';
 import 'package:ecommerceapp/core/class/handlingdataview.dart';
 import 'package:ecommerceapp/core/class/statusrequest.dart';
-import 'package:ecommerceapp/view/widget/cart/appbarcart.dart';
 import 'package:ecommerceapp/view/widget/cart/custombottomvavigationcart.dart';
 import 'package:ecommerceapp/view/widget/cart/customitemscartlist.dart';
 import 'package:ecommerceapp/view/widget/cart/topcardcart.dart';
@@ -14,23 +13,25 @@ class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(CartController());
-    return GetBuilder<CartController>(
-      builder:
-          (controller) => Scaffold(
-            bottomNavigationBar: BottomNavigationBarCart(
+    return Scaffold(
+      appBar: AppBar(title: Text("My Cart")),
+      bottomNavigationBar: GetBuilder<CartController>(
+        builder:
+            (controller) => BottomNavigationBarCart(
               price: controller.totalprice,
-              shipping: "50",
-              totalPrice:
-                  controller.totalprice == 0
-                      ? "0"
-                      : "${controller.totalprice + 50}",
-              onPressed: () {},
+              discount: controller.discount,
+              totalPrice: controller.getTotalPrice().toString(),
+              couponController: controller.couponController!,
+              onApplyCoupon: controller.checkcoupon,
+              shipping: 0,
             ),
-            body: HandlingDataView(
+      ),
+      body: GetBuilder<CartController>(
+        builder:
+            (controller) => HandlingDataView(
               statusRequest: controller.statusRequest!,
               widget: ListView(
                 children: [
-                  TopApparCart(title: "My Cart"),
                   TopCardCart(itemscount: controller.totalcount),
                   SizedBox(height: 20),
                   ...List.generate(
@@ -63,7 +64,7 @@ class Cart extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+      ),
     );
   }
 }

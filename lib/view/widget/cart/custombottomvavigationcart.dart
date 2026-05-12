@@ -1,85 +1,177 @@
+import 'package:ecommerceapp/controller/cart_controller.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
+import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BottomNavigationBarCart extends StatelessWidget {
+  final TextEditingController couponController;
+  final void Function()? onApplyCoupon;
   final double price;
-  final String shipping;
+  final int discount;
+  final int shipping;
   final String totalPrice;
-  final void Function()? onPressed;
+
   const BottomNavigationBarCart({
     super.key,
     required this.price,
+    required this.discount,
     required this.shipping,
     required this.totalPrice,
-    this.onPressed,
+    required this.couponController,
+    required this.onApplyCoupon,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 220,
-      padding: EdgeInsets.symmetric(horizontal: 40),
+    return SizedBox(
+      height: 340,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Price", style: TextStyle(fontSize: 20)),
-              Text(
-                "$price\$",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: AppColor.primarycolor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
+          GetBuilder<CartController>(
+            builder:
+                (controller) =>
+                    controller.couponmodel.couponName == null
+                        ? Container(
+                          padding: EdgeInsets.all(10),
+                          margin: EdgeInsets.symmetric(horizontal: 2),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: TextFormField(
+                                  controller: couponController,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.symmetric(
+                                      vertical: 3.1,
+                                      horizontal: 7,
+                                    ),
+                                    hintText: "Coupon Code",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 4),
+                              Expanded(
+                                child: MaterialButton(
+                                  color: const Color.fromARGB(255, 11, 68, 109),
+                                  onPressed: onApplyCoupon,
+                                  child: Text(
+                                    "Apply",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                        : Column(
+                          children: [
+                            SizedBox(height: 38),
+                            Text(
+                              "Applied Coupon: ${controller.couponmodel.couponName}",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppColor.primarycolor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        ),
           ),
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Sipping", style: TextStyle(fontSize: 20)),
-              Text(
-                "$shipping\$",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: AppColor.primarycolor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10),
-          Divider(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Total Price",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "$totalPrice\$",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: AppColor.primarycolor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 30),
-          MaterialButton(
-            minWidth: double.infinity,
-            height: 50,
-            color: AppColor.primarycolor,
-            shape: RoundedRectangleBorder(
+          Container(
+            padding: EdgeInsets.all(10),
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColor.primarycolor, width: 2),
               borderRadius: BorderRadius.circular(10),
             ),
-            onPressed: onPressed,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Price", style: TextStyle(fontSize: 20)),
+                    Text(
+                      "$price\$",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: AppColor.primarycolor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Discount", style: TextStyle(fontSize: 20)),
+                    Text(
+                      "$discount",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: AppColor.primarycolor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Shipping", style: TextStyle(fontSize: 20)),
+                    Text(
+                      '$shipping',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: AppColor.primarycolor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 14),
+                Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Total Price",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "$totalPrice\$",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: AppColor.primarycolor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 15),
+          MaterialButton(
+            minWidth: 350,
+            height: 50,
+            color: AppColor.primarycolor,
+            onPressed: () {
+              Get.toNamed(AppRoute.checkout);
+            },
             child: Text(
-              "Place Order",
+              "Order",
               style: TextStyle(color: AppColor.appbarcolor, fontSize: 16),
             ),
           ),

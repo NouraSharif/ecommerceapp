@@ -4,12 +4,20 @@ import 'package:ecommerceapp/core/functions/handlingdata.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/cart_data.dart';
 import 'package:ecommerceapp/data/model/cartmodel.dart';
+import 'package:ecommerceapp/data/model/couponmodel.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class CartController extends GetxController {
+  TextEditingController? couponController;
+  CouponModel couponmodel = CouponModel();
+
+  int discount = 0;
+  String? couponname;
+
   CartData cartData = CartData();
   MyServices myServices = Get.find();
 
@@ -96,9 +104,43 @@ class CartController extends GetxController {
     update();
   }
 
+  checkcoupon() async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cartData.checkcoupon(couponController!.text);
+    statusRequest = handlingData(response);
+
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        Map<String, dynamic> couponData = response['data'][0];
+        couponmodel = CouponModel.fromJson(couponData);
+        discount = couponmodel.couponDiscount ?? 0;
+        statusRequest = StatusRequest.success;
+      } else {
+        Get.rawSnackbar(
+          title: "Error",
+          message: "Invalid coupon code",
+          backgroundColor: Colors.red,
+        );
+      }
+    }
+    update();
+  }
+
+  getTotalPrice() {
+    return totalprice - (totalprice * (discount / 100));
+  }
+
   @override
   void onInit() {
+    couponController = TextEditingController();
     viewCart();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    couponController?.dispose();
+    super.onClose();
   }
 }
