@@ -39,7 +39,12 @@ The system follows MVC architecture and uses GetX for state management.
 - Product Details Page
 - Cart Page
 - Favorites Page
-
+  
+### 📍 Address Management
+Select delivery location using Google Maps
+Add detailed address information
+Store user address data in backend database
+  
 ### 🌍 Localization
 - Supports two languages:
   - English
