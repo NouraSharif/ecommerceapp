@@ -1,6 +1,5 @@
 import 'package:ecommerceapp/controller/address/adddetails_controller.dart';
 import 'package:ecommerceapp/core/class/handlingdataview.dart';
-import 'package:ecommerceapp/core/constant/color.dart';
 import 'package:ecommerceapp/core/shared/custombutton.dart';
 import 'package:ecommerceapp/view/widget/auth/customtextformauth.dart';
 import 'package:flutter/material.dart';
