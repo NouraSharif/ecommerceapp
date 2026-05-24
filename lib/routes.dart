@@ -1,6 +1,5 @@
 import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:ecommerceapp/core/middleware/mymiddleware.dart';
-import 'package:ecommerceapp/test.dart';
 import 'package:ecommerceapp/view/screen/address/add.dart';
 import 'package:ecommerceapp/view/screen/address/adddetails.dart';
 import 'package:ecommerceapp/view/screen/address/edit.dart';
@@ -23,7 +22,6 @@ import 'package:ecommerceapp/view/screen/onboarding.dart';
 import 'package:ecommerceapp/view/screen/productdetails.dart';
 import 'package:ecommerceapp/view/screen/settings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:get/utils.dart';
 
 List<GetPage<dynamic>> routes = [
   GetPage(

@@ -172,7 +172,11 @@ class BottomNavigationBarCart extends StatelessWidget {
             },
             child: Text(
               "Order",
-              style: TextStyle(color: AppColor.appbarcolor, fontSize: 16),
+              style: TextStyle(
+                color: AppColor.appbarcolor,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],
