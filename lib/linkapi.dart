@@ -47,4 +47,10 @@ class AppLink {
 
   //================coupon==============
   static const String checkcoupon = "$server/coupon/checkcoupon.php";
+
+  //================orders==============
+  static const String orders = "$server/orders";
+  static const String checkout = "$orders/checkout.php";
+  static const String pending = "$orders/pending.php";
+  static const String archive = "$orders/archive.php";
 }

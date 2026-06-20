@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/core/class/statusrequest.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
+import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:ecommerceapp/core/functions/handlingdata.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/cart_data.dart';
@@ -18,6 +19,8 @@ class CartController extends GetxController {
   int discount = 0;
   String? couponname;
 
+  String? couponid;
+
   CartData cartData = CartData();
   MyServices myServices = Get.find();
 
@@ -29,10 +32,12 @@ class CartController extends GetxController {
 
   addToCart(String itemsid) async {
     statusRequest = StatusRequest.loading;
+    update();
     var response = await cartData.add(
       myServices.sharedPreferences.getString("id")!,
       itemsid,
     );
+    print("=========================================RESPONSE: $response");
     statusRequest = handlingData(response);
     Get.rawSnackbar(
       title: "Success",
@@ -50,13 +55,18 @@ class CartController extends GetxController {
       itemsid,
     );
     statusRequest = handlingData(response);
-    Get.rawSnackbar(
-      title: "Success",
-      message: "Item Remove From Cart",
-      backgroundColor: AppColor.secondaryColor,
-    );
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        Get.rawSnackbar(
+          title: "Success",
+          message: "Item Removed",
+          backgroundColor: AppColor.secondaryColor,
+        );
+      } else {
+        Get.rawSnackbar(title: "Error", message: "Remove failed");
+      }
+    }
     update();
-    return response;
   }
 
   viewCart() async {
@@ -80,14 +90,15 @@ class CartController extends GetxController {
         List dataresponse = response['datacart'];
         data.addAll(dataresponse.map((e) => CartModel.fromJson(e)));
       }
-
       if (response['countprice'] != null && response['countprice'] is Map) {
         Map countprice = response['countprice'];
         totalprice = double.parse(countprice['totalprice'].toString());
         totalcount = int.parse(countprice['totalcount'].toString());
       }
     }
-
+    if (data.isEmpty) {
+      statusRequest = StatusRequest.emptydata;
+    }
     update();
   }
 
@@ -109,12 +120,16 @@ class CartController extends GetxController {
     update();
     var response = await cartData.checkcoupon(couponController!.text);
     statusRequest = handlingData(response);
+    print(
+      "==========================================COUPON RESPONSE: $response",
+    );
 
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         Map<String, dynamic> couponData = response['data'][0];
         couponmodel = CouponModel.fromJson(couponData);
         discount = couponmodel.couponDiscount ?? 0;
+        couponid = couponmodel.couponId!.toString();
         statusRequest = StatusRequest.success;
       } else {
         Get.rawSnackbar(
@@ -122,6 +137,7 @@ class CartController extends GetxController {
           message: "Invalid coupon code",
           backgroundColor: Colors.red,
         );
+        couponid = null;
       }
     }
     update();
@@ -129,6 +145,21 @@ class CartController extends GetxController {
 
   getTotalPrice() {
     return totalprice - (totalprice * (discount / 100));
+  }
+
+  goToCheckout() {
+    if (data.isEmpty) {
+      Get.snackbar("Error", "Your cart is empty");
+      return;
+    }
+    Get.toNamed(
+      AppRoute.checkout,
+      arguments: {
+        'couponid': couponid ?? '0',
+        'totalprice': totalprice,
+        'discount': discount.toString(),
+      },
+    );
   }
 
   @override

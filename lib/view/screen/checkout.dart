@@ -21,18 +21,23 @@ class Checkout extends StatelessWidget {
       appBar: AppBar(title: const Text('Checkout')),
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        child: MaterialButton(
-          height: 50,
-          onPressed: () {},
-          color: AppColor.primarycolor,
-          child: Text(
-            'Checkout',
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+        child: GetBuilder<CheckoutController>(
+          builder:
+              (controller) => MaterialButton(
+                height: 50,
+                onPressed: () {
+                  controller.checkout();
+                },
+                color: AppColor.primarycolor,
+                child: Text(
+                  'Checkout',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
         ),
       ),
       body: Container(
@@ -45,23 +50,17 @@ class Checkout extends StatelessWidget {
                   children: [
                     TitleText(titletext: 'Choose Payment Method :'),
                     CardPaymentMethod(
-                      isactive:
-                          controller.paymentMethod == 'Cash On Delivery'
-                              ? true
-                              : false,
+                      isactive: controller.paymentMethod == '0' ? true : false,
                       paymentmethod: 'Cash On Delivery',
                       onTap: () {
-                        controller.choosePaymentMethod('Cash On Delivery');
+                        controller.choosePaymentMethod('0');
                       },
                     ),
                     CardPaymentMethod(
-                      isactive:
-                          controller.paymentMethod == 'Payment Cards'
-                              ? true
-                              : false,
+                      isactive: controller.paymentMethod == '1' ? true : false,
                       paymentmethod: 'Payment Cards',
                       onTap: () {
-                        controller.choosePaymentMethod('Payment Cards');
+                        controller.choosePaymentMethod('1');
                       },
                     ),
                     SizedBox(height: 15),
@@ -72,30 +71,26 @@ class Checkout extends StatelessWidget {
                           title: 'Delivery',
                           image: AppImageAsset.delivery,
                           isactive:
-                              controller.deliveryType == 'Delivery'
-                                  ? true
-                                  : false,
+                              controller.deliveryType == '0' ? true : false,
                           onTap: () {
-                            controller.chooseDeliveryType('Delivery');
+                            controller.chooseDeliveryType('0');
                             controller.addressView();
                           },
                         ),
                         SizedBox(width: 10),
                         CardDeliveryType(
-                          title: 'Revice',
+                          title: 'Receive',
                           image: AppImageAsset.drivethru,
                           isactive:
-                              controller.deliveryType == 'Recive'
-                                  ? true
-                                  : false,
+                              controller.deliveryType == '1' ? true : false,
                           onTap: () {
-                            controller.chooseDeliveryType('Revice');
+                            controller.chooseDeliveryType('1');
                           },
                         ),
                       ],
                     ),
                     SizedBox(height: 15),
-                    if (controller.deliveryType == 'Delivery')
+                    if (controller.deliveryType == '0')
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

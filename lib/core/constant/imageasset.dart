@@ -15,4 +15,5 @@ class AppImageAsset {
   static const String noInternet = "$rootLottie/Nointernet.json";
   static const String error404 = "$rootLottie/Error404.json";
   static const String emptyBox = "$rootLottie/Emptybox.json";
+  static const String emptyData = "$rootLottie/EmptyData.json";
 }

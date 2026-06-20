@@ -117,6 +117,7 @@ flutter:
     - assets/lottie/Nointernet.json
     - assets/lottie/Error404.json
     - assets/lottie/Emptybox.json
+    - assets/lottie/EmptyData.json
     - assets/images/avatar.png
     - assets/images/sale.png
     - assets/images/p1.jpg

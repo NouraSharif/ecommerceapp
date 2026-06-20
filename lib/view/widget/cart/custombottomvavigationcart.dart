@@ -1,10 +1,9 @@
 import 'package:ecommerceapp/controller/cart_controller.dart';
 import 'package:ecommerceapp/core/constant/color.dart';
-import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BottomNavigationBarCart extends StatelessWidget {
+class BottomNavigationBarCart extends GetView<CartController> {
   final TextEditingController couponController;
   final void Function()? onApplyCoupon;
   final double price;
@@ -168,7 +167,7 @@ class BottomNavigationBarCart extends StatelessWidget {
             height: 50,
             color: AppColor.primarycolor,
             onPressed: () {
-              Get.toNamed(AppRoute.checkout);
+              controller.goToCheckout();
             },
             child: Text(
               "Order",

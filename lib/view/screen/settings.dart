@@ -49,7 +49,7 @@ class SettingsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: SizedBox(
-              height: 315,
+              height: 420,
               child: GetBuilder<SettingsPageController>(
                 builder:
                     (controller) => Card(
@@ -67,6 +67,35 @@ class SettingsPage extends StatelessWidget {
                                 onChanged: (val) {
                                   val = false;
                                 },
+                              ),
+                            ),
+                            ListTile(
+                              onTap: () {
+                                Get.toNamed(AppRoute.pending);
+                              },
+                              title: Text(
+                                "Orders",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              trailing: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.receipt_long_outlined,
+                                  size: 28,
+                                ),
+                              ),
+                            ),
+                            ListTile(
+                              onTap: () {
+                                Get.toNamed(AppRoute.archive);
+                              },
+                              title: Text(
+                                "Archive",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              trailing: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.archive_outlined, size: 28),
                               ),
                             ),
                             ListTile(

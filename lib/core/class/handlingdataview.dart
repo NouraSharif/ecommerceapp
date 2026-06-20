@@ -34,6 +34,10 @@ class HandlingDataView extends StatelessWidget {
         ? Center(
           child: Lottie.asset(AppImageAsset.emptyBox, width: 250, height: 250),
         )
+        : statusRequest == StatusRequest.emptydata
+        ? Center(
+          child: Lottie.asset(AppImageAsset.emptyData, width: 250, height: 250),
+        )
         : widget;
   }
 }
