@@ -1,8 +1,10 @@
 import 'package:ecommerceapp/core/lcalization/changelocale.dart';
 import 'package:ecommerceapp/core/lcalization/translation.dart';
 import 'package:ecommerceapp/core/services/services.dart';
+import 'package:ecommerceapp/firebase_options.dart';
 import 'package:ecommerceapp/routes.dart';
 import 'package:ecommerceapp/view/screen/language.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -13,7 +15,10 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  print(
+    "==============${Firebase.apps}",
+  ); //[FirebaseApp([DEFAULT])] ✔ => الفايربيز مهيأ
   await Get.putAsync<MyServices>(() async {
     return await MyServices().initWithoutFirebase();
   });

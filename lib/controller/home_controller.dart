@@ -3,6 +3,7 @@ import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:ecommerceapp/core/functions/handlingdata.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/homedata.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -100,6 +101,7 @@ class HomeControllerImp extends HomeController {
 
     initialData();
     search = TextEditingController();
+    // FirebaseMessaging.instance.subscribeToTopic("users");
   }
 
   @override

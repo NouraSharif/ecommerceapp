@@ -1,10 +1,4 @@
-import 'package:ecommerceapp/controller/test_controller.dart';
-import 'package:ecommerceapp/core/class/handlingdataview.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
-
+/*
 class TestView extends StatelessWidget {
   const TestView({super.key});
 
@@ -27,5 +21,34 @@ class TestView extends StatelessWidget {
         },
       ),
     );
+  }
+}
+*/
+import 'package:flutter/material.dart';
+
+class Test extends StatefulWidget {
+  const Test({super.key});
+
+  @override
+  State<Test> createState() => _TestState();
+}
+
+class _TestState extends State<Test> {
+  @override
+  void initState() {
+    super.initState();
+    getToken();
+  }
+
+  Future<void> getToken() async {
+    // String? token = await FirebaseMessaging.instance.getToken();
+
+    // print("================");
+    //print(token);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text("Testing FCM Token")));
   }
 }

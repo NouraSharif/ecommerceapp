@@ -3,6 +3,7 @@ import 'package:ecommerceapp/core/constant/routes.dart';
 import 'package:ecommerceapp/core/functions/handlingdata.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:ecommerceapp/data/datasource/remote/auth/login.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -52,7 +53,7 @@ class LoginControllerImp extends LoginController {
               "id",
               response['data']['users_id'].toString(),
             );
-
+            String userid = myservices.sharedPreferences.getString('id')!;
             myservices.sharedPreferences.setString(
               "username",
               response['data']['users_name'],
@@ -66,6 +67,8 @@ class LoginControllerImp extends LoginController {
               response['data']['users_phone'],
             );
             myservices.sharedPreferences.setBool("step2", true);
+            FirebaseMessaging.instance.subscribeToTopic("users");
+            FirebaseMessaging.instance.subscribeToTopic("users$userid");
             Get.offNamed(AppRoute.home);
           } else {
             Get.toNamed(AppRoute.verifyCode, arguments: {"email": email!.text});
