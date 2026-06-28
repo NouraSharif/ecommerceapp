@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:ecommerceapp/core/constant/apptheme.dart';
+import 'package:ecommerceapp/core/functions/fcmconfig.dart';
 import 'package:ecommerceapp/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -51,6 +50,8 @@ class LocaleController extends GetxController {
 
   @override
   void onInit() {
+    requestPremissionNotification();
+    fcmConfig();
     requestPerLocation();
     String? lang = myServices.sharedPreferences.getString("lang");
     if (lang == "ar") {
